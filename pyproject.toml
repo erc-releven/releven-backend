@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "releven-backend"
+version = "0.1.0"
+description = ""
+authors = ["Kevin Stadler <kevin.stadler@oeaw.ac.at>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+rdfproxy = {git = "https://github.com/acdh-oeaw/rdfproxy.git"}
+fastapi = {extras = ["standard"], version = "^0.115.4"}
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

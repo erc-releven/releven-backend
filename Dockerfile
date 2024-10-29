@@ -1,23 +1,20 @@
-FROM python:3.12
+FROM python:3.12-slim
 ARG USERNAME=app
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
-# Create the user
-RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
-
-RUN apt update
-RUN apt install git
-RUN pip3 install poetry
-
 WORKDIR /app/
 
 COPY . /app
-RUN poetry config virtualenvs.create false && poetry install --no-dev
+
+# Create the user and install all dependencies
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && apt update && apt -y full-upgrade && apt install -y git && pip3 install poetry && apt clean \
+    && poetry config virtualenvs.create false && poetry install --no-dev && poetry cache clear --all .
 
 USER app
 
-CMD ["fastapi", "run", "releven.py"]
+CMD ["fastapi", "run", "releven.py", "--port", "5000", "--proxy-headers"]
 
-EXPOSE 8000
+EXPOSE 5000

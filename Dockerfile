@@ -11,11 +11,10 @@ COPY . /app
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
     && apt update && apt -y full-upgrade && apt install -y git && pip3 install poetry && apt clean \
-    && poetry config virtualenvs.create false && poetry install --no-dev && poetry cache clear --all .
+    && poetry config virtualenvs.create false && poetry install --no-dev && poetry cache clear --all . \
+    && git config --system --add safe.directory /app
 
 USER app
-
-RUN git config --global --add safe.directory /app
 
 CMD ["fastapi", "run", "releven.py", "--port", "5000", "--proxy-headers"]
 

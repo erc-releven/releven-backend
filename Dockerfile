@@ -15,6 +15,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 USER app
 
+RUN git config --global --add safe.directory /app
+
 CMD ["fastapi", "run", "releven.py", "--port", "5000", "--proxy-headers"]
 
 EXPOSE 5000

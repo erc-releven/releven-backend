@@ -24,7 +24,7 @@ jobs:
       default_port: "5000"
 # Usually you don't deal with all commits since the repository was created.
 # Increase if you e.g don't find a tag you want to display in the application
-      fetch-depth: 1
+      fetch-depth: 60
       submodules: "false"
 #      herokuish_base_image: ghcr.io/acdh-oeaw/herokuish-for-cypress/main:latest-22
       APP_NAME: releven-backend
@@ -61,7 +61,7 @@ jobs:
           kube_ingress_base_domain="${{ vars.KUBE_INGRESS_BASE_DOMAIN }}"
           public_url="${{ needs.setup_workflow_env.outputs.PUBLIC_URL || vars.PUBLIC_URL }}"
           if [ "${public_url}x" == 'x' ]
-          then public_url=https://${{ needs.setup_workflow_env.outputs.environment_short }}.${kube_ingress_base_domain}
+          then public_url=https://${{ needs.setup_workflow_env.outputs.APP_NAME}}-${{ needs.setup_workflow_env.outputs.environment_short }}.${kube_ingress_base_domain}
           fi
           echo "public_url=$public_url" >> $GITHUB_OUTPUT
     outputs:     
@@ -96,6 +96,7 @@ jobs:
     needs: [setup_workflow_env, generate_workflow_vars, _1]
     uses: erc-releven/gl-autodevops-minimal-port/.github/workflows/deploy.yml@main
     secrets: inherit
+    if: ! contains(github.ref_name, 'tags')
     with:
       environment: ${{ needs.setup_workflow_env.outputs.environment}}
       fetch-depth: ${{ fromJson(needs.setup_workflow_env.outputs.fetch-depth) }}

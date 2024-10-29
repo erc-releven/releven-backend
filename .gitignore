@@ -1,0 +1,5 @@
+__pycache__
+# For production it may be better to use the lock file and not trust the version resolution
+poetry.lock
+# Depending on the preferred IDE this might be useful in the repository
+.vscode

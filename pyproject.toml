@@ -8,6 +8,7 @@ authors = ["Kevin Stadler <kevin.stadler@oeaw.ac.at>"]
 python = "^3.12"
 rdfproxy = {git = "https://github.com/acdh-oeaw/rdfproxy.git"}
 fastapi = {extras = ["standard"], version = "^0.115.4"}
+gitpython = "^3.1.43"
 
 [tool.poetry.dev-dependencies]
 

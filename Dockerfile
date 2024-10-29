@@ -8,11 +8,15 @@ WORKDIR /app/
 COPY . /app
 
 # Create the user and install all dependencies
+# Declare the /app directory as a safe for any git operations, like reading the revision and tag
+# Reset the git repository to the last commit as otherwise
+# the image will report as dirty if build on windows due to the line endings.
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
     && apt update && apt -y full-upgrade && apt install -y git && pip3 install poetry && apt clean \
     && poetry config virtualenvs.create false && poetry install --no-dev && poetry cache clear --all . \
-    && git config --system --add safe.directory /app
+    && git config --system --add safe.directory /app \
+    && cd /app && git reset --hard
 
 USER app
 

@@ -96,7 +96,7 @@ jobs:
     needs: [setup_workflow_env, generate_workflow_vars, _1]
     uses: erc-releven/gl-autodevops-minimal-port/.github/workflows/deploy.yml@main
     secrets: inherit
-    if: contains(github.ref_name, 'tags') != true
+    if: contains(github.ref, 'tags') != true
     with:
       environment: ${{ needs.setup_workflow_env.outputs.environment}}
       fetch-depth: ${{ fromJson(needs.setup_workflow_env.outputs.fetch-depth) }}

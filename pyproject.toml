@@ -6,7 +6,7 @@ authors = ["Kevin Stadler <kevin.stadler@oeaw.ac.at>"]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-rdfproxy = {git = "https://github.com/acdh-oeaw/rdfproxy.git"}
+rdfproxy = {git = "https://github.com/acdh-oeaw/rdfproxy.git", branch = "lupl/model-bool-feature"}
 fastapi = {extras = ["standard"], version = "^0.115.4"}
 gitpython = "^3.1.43"
 

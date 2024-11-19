@@ -7,13 +7,24 @@ PREFIX r11pros: <https://r11.eu/ns/prosopography/>
 
 SELECT
 ?person
-    ?person__person_descriptive_name
+  ?person__person_appellation_assertion
+    ?person__person_appellation_assertion__person_appellation_is
+  ?person__person_descriptive_name
 
 WHERE {
 ?person a crm:E21_Person.
 
-    OPTIONAL {
-    ?person crm:P3_has_note ?person__person_descriptive_name.
-    }
+  OPTIONAL {
+  ?person__person_appellation_assertion a star:E13_crm_P1.
+  ?person__person_appellation_assertion crm:P140_assigned_attribute_to ?person.
+  
+    ?person__person_appellation_assertion___pai crm:P140_assigned_attribute_to ?person__person_appellation_assertion.
+    ?person__person_appellation_assertion___pai crm:P141_assigned ?person__person_appellation_assertion___pai___pai.
+    ?person__person_appellation_assertion___pai___pai crm:P190_has_symbolic_content ?person__person_appellation_assertion__person_appellation_is.
+  }
+
+  OPTIONAL {
+  ?person crm:P3_has_note ?person__person_descriptive_name.
+  }
 }
 

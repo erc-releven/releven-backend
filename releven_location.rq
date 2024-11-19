@@ -1,0 +1,17 @@
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX lrmoo: <http://iflastandards.info/ns/lrm/lrmoo/>
+PREFIX star: <https://r11.eu/ns/star/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX r11: <https://r11.eu/ns/spec/>
+PREFIX r11pros: <https://r11.eu/ns/prosopography/>
+
+SELECT
+?location
+  ?location__location_descriptive_name
+
+WHERE {
+?location a crm:E53_Place.
+
+  ?location crm:P3_has_note ?location__location_descriptive_name.
+}
+

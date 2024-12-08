@@ -1,17 +1,17 @@
 from typing import Annotated
 
-from pydantic import AnyUrl, BaseModel
-from rdfproxy import SPARQLBinding
+from pydantic import AnyUrl, BaseModel, Field  # noqa: F401
+from rdfproxy import ConfigDict, SPARQLBinding
 
 
 class Person_PersonAppellationAssertion(BaseModel):
-    class Config:
-        title = "Name(s) in the sources"
-        model_bool = "id"
-
+    model_config = ConfigDict(
+        title="Name(s) in the sources",
+        model_bool="id",
+    )
     id: Annotated[
         AnyUrl | None, SPARQLBinding("person__person_appellation_assertion")
-    ] = None
+    ] = Field(default=None, exclude=True)
     person_appellation_is: Annotated[
         str | None,
         SPARQLBinding("person__person_appellation_assertion__person_appellation_is"),
@@ -19,16 +19,51 @@ class Person_PersonAppellationAssertion(BaseModel):
 
 
 class Person(BaseModel):
-    class Config:
-        title = "Person"
-        model_bool = "id"
-        group_by = "person"
-
-    id: Annotated[AnyUrl | None, SPARQLBinding("person")] = None
+    model_config = ConfigDict(
+        title="Person",
+        model_bool="id",
+        group_by="id",
+    )
+    id: Annotated[AnyUrl | None, SPARQLBinding("person")] = Field(
+        default=None, exclude=True
+    )
+    person_id_assignment: Annotated[
+        list[AnyUrl], SPARQLBinding("person__person_id_assignment")
+    ]
     person_appellation_assertion: Annotated[
         list[Person_PersonAppellationAssertion],
         SPARQLBinding("person__person_appellation_assertion"),
     ]
+    person_gender_assertion: Annotated[
+        list[AnyUrl], SPARQLBinding("person__person_gender_assertion")
+    ]
+    person_ethnicity_assertion: Annotated[
+        list[AnyUrl], SPARQLBinding("person__person_ethnicity_assertion")
+    ]
     person_descriptive_name: Annotated[
         list[str], SPARQLBinding("person__person_descriptive_name")
     ]
+    person_possession_assertion: Annotated[
+        list[AnyUrl], SPARQLBinding("person__person_possession_assertion")
+    ]
+    person_status_assertion: Annotated[
+        list[AnyUrl], SPARQLBinding("person__person_status_assertion")
+    ]
+    person_religion_assertion: Annotated[
+        list[AnyUrl], SPARQLBinding("person__person_religion_assertion")
+    ]
+    person_occupation_assertion: Annotated[
+        list[AnyUrl], SPARQLBinding("person__person_occupation_assertion")
+    ]
+    person_language_assertion: Annotated[
+        list[AnyUrl], SPARQLBinding("person__person_language_assertion")
+    ]
+    person_kinship_assertion: Annotated[
+        list[AnyUrl], SPARQLBinding("person__person_kinship_assertion")
+    ]
+    birth_circumstances_claim: Annotated[
+        AnyUrl | None, SPARQLBinding("person__birth_circumstances_claim")
+    ] = None
+    person_death_assertion: Annotated[
+        AnyUrl | None, SPARQLBinding("person__person_death_assertion")
+    ] = None

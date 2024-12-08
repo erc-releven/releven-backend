@@ -3,7 +3,7 @@ from os import path
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from git import Repo
-from rdfproxy import Page, SPARQLModelAdapter
+from rdfproxy import Page, QueryParameters, SPARQLModelAdapter
 from releven_location import Location
 from releven_person import Person
 from releven_written_work import WrittenWork
@@ -36,19 +36,8 @@ def location(page: int = 1, size: int = 10) -> Page[Location]:
         .replace("\n ", " "),
         model=Location,
     )
-    return adapter.query(page=page, size=size)
-
-
-@app.get("/written_work")
-def written_work(page: int = 1, size: int = 10) -> Page[WrittenWork]:
-    adapter = SPARQLModelAdapter(
-        target="https://graphdb.r11.eu/repositories/RELEVEN",
-        query=open(f"{path.dirname(path.realpath(__file__))}/releven_written_work.rq")
-        .read()
-        .replace("\n ", " "),
-        model=WrittenWork,
-    )
-    return adapter.query(page=page, size=size)
+    parameters = QueryParameters(page=page, size=size)
+    return adapter.query(parameters)
 
 
 @app.get("/person")
@@ -60,4 +49,18 @@ def person(page: int = 1, size: int = 10) -> Page[Person]:
         .replace("\n ", " "),
         model=Person,
     )
-    return adapter.query(page=page, size=size)
+    parameters = QueryParameters(page=page, size=size)
+    return adapter.query(parameters)
+
+
+@app.get("/written_work")
+def written_work(page: int = 1, size: int = 10) -> Page[WrittenWork]:
+    adapter = SPARQLModelAdapter(
+        target="https://graphdb.r11.eu/repositories/RELEVEN",
+        query=open(f"{path.dirname(path.realpath(__file__))}/releven_written_work.rq")
+        .read()
+        .replace("\n ", " "),
+        model=WrittenWork,
+    )
+    parameters = QueryParameters(page=page, size=size)
+    return adapter.query(parameters)

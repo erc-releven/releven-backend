@@ -9,11 +9,6 @@ SELECT
 ?written_work
   ?written_work__written_work_label
   ?written_work__work_creation_assertion
-    ?written_work__work_creation_assertion__work_creation
-      ?written_work__work_creation_assertion__work_creation__work_creation_6464e7f7408f5
-      ?written_work__work_creation_assertion__work_creation__text_creation_timeframe_assertio
-    ?written_work__work_creation_assertion__work_creation_assertion_by
-    ?written_work__work_creation_assertion__work_creation_assertion_by_64676da87229e
 
 WHERE {
 ?written_work a r11:Text_Expression.
@@ -22,31 +17,7 @@ WHERE {
 
   OPTIONAL {
   ?written_work__work_creation_assertion a star:E13_lrmoo_R17.
-  ?written_work__work_creation_assertion crm:P141_assigned ?written_work.
-  
-    ?written_work__work_creation_assertion__work_creation a lrmoo:F28_Expression_Creation.
-    ?written_work__work_creation_assertion___wc crm:P141_assigned ?written_work__work_creation_assertion.
-    ?written_work__work_creation_assertion___wc crm:P140_assigned_attribute_to ?written_work__work_creation_assertion__work_creation.
-    
-      OPTIONAL {
-      ?written_work__work_creation_assertion__work_creation__work_creation_6464e7f7408f5 a star:E13_crm_P14.
-      ?written_work__work_creation_assertion__work_creation___wc6 crm:P141_assigned ?written_work__work_creation_assertion__work_creation.
-      ?written_work__work_creation_assertion__work_creation___wc6 crm:P140_assigned_attribute_to ?written_work__work_creation_assertion__work_creation___wc6___wc6.
-      ?written_work__work_creation_assertion__work_creation__work_creation_6464e7f7408f5 crm:P140_assigned_attribute_to ?written_work__work_creation_assertion__work_creation___wc6___wc6.
-      }
-    
-      ?written_work__work_creation_assertion__work_creation__text_creation_timeframe_assertio a star:E13_crm_P4.
-      ?written_work__work_creation_assertion__work_creation___tcta crm:P141_assigned ?written_work__work_creation_assertion__work_creation.
-      ?written_work__work_creation_assertion__work_creation___tcta crm:P140_assigned_attribute_to ?written_work__work_creation_assertion__work_creation___tcta___tcta.
-      ?written_work__work_creation_assertion__work_creation__text_creation_timeframe_assertio crm:P140_assigned_attribute_to ?written_work__work_creation_assertion__work_creation___tcta___tcta.
-  
-    ?written_work__work_creation_assertion__work_creation_assertion_by a crm:E21_Person.
-    ?written_work__work_creation_assertion___wcab crm:P141_assigned ?written_work__work_creation_assertion.
-    ?written_work__work_creation_assertion___wcab crm:P14_carried_out_by ?written_work__work_creation_assertion__work_creation_assertion_by.
-  
-    ?written_work__work_creation_assertion__work_creation_assertion_by_64676da87229e a r11:Author_Group.
-    ?written_work__work_creation_assertion___wcab6 crm:P141_assigned ?written_work__work_creation_assertion.
-    ?written_work__work_creation_assertion___wcab6 crm:P14_carried_out_by ?written_work__work_creation_assertion__work_creation_assertion_by_64676da87229e.
+  ?written_work ^crm:P141_assigned ?written_work__work_creation_assertion.
   }
 }
 

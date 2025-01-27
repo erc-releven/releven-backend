@@ -6,12 +6,14 @@ PREFIX r11: <https://r11.eu/ns/spec/>
 PREFIX r11pros: <https://r11.eu/ns/prosopography/>
 
 SELECT
-?location__location
-  ?location__location__location_descriptive_name
+?_person_stub__person
+  ?_person_stub__person__person_descriptive_name
 
 WHERE {
-?location__location a crm:E53_Place.
+?_person_stub__person a crm:E21_Person.
 
-  ?location__location crm:P3_has_note ?location__location__location_descriptive_name.
+  OPTIONAL {
+  ?_person_stub__person crm:P3_has_note ?_person_stub__person__person_descriptive_name.
+  }
 }
 

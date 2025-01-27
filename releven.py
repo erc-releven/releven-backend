@@ -1,15 +1,11 @@
+from fastapi import FastAPI, Query
 from os import path
-
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from git import Repo
 from rdfproxy import Page, QueryParameters, SPARQLModelAdapter
-from releven_location import Location
-from releven_person import Person
-from releven_written_work import WrittenWork
+from typing import Annotated
 
 app = FastAPI()
 
+from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
@@ -18,6 +14,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+from git import Repo
 
 
 # The automatic health check endpoint is /. The return code has to be 200 or 30x.
@@ -27,40 +24,61 @@ def version():
     return {"version": repo.git.describe(tags=True, dirty=True, always=True)}
 
 
+from releven_location import Location_Location as foo
+
+
 @app.get("/location")
-def location(page: int = 1, size: int = 10) -> Page[Location]:
+def location(params: Annotated[QueryParameters, Query()]) -> Page[foo]:
     adapter = SPARQLModelAdapter(
         target="https://graphdb.r11.eu/repositories/RELEVEN",
         query=open(f"{path.dirname(path.realpath(__file__))}/releven_location.rq")
         .read()
         .replace("\n ", " "),
-        model=Location,
+        model=foo,
     )
-    parameters = QueryParameters(page=page, size=size)
-    return adapter.query(parameters)
+    return adapter.query(params)
+
+
+from releven_person import Person_Person as foo
 
 
 @app.get("/person")
-def person(page: int = 1, size: int = 10) -> Page[Person]:
+def person(params: Annotated[QueryParameters, Query()]) -> Page[foo]:
     adapter = SPARQLModelAdapter(
         target="https://graphdb.r11.eu/repositories/RELEVEN",
         query=open(f"{path.dirname(path.realpath(__file__))}/releven_person.rq")
         .read()
         .replace("\n ", " "),
-        model=Person,
+        model=foo,
     )
-    parameters = QueryParameters(page=page, size=size)
-    return adapter.query(parameters)
+    return adapter.query(params)
+
+
+from releven__person_stub import PersonStub_Person as foo
+
+
+@app.get("/person_stub")
+def _person_stub(params: Annotated[QueryParameters, Query()]) -> Page[foo]:
+    adapter = SPARQLModelAdapter(
+        target="https://graphdb.r11.eu/repositories/RELEVEN",
+        query=open(f"{path.dirname(path.realpath(__file__))}/releven__person_stub.rq")
+        .read()
+        .replace("\n ", " "),
+        model=foo,
+    )
+    return adapter.query(params)
+
+
+from releven_written_work import WrittenWork_WrittenWork as foo
 
 
 @app.get("/written_work")
-def written_work(page: int = 1, size: int = 10) -> Page[WrittenWork]:
+def written_work(params: Annotated[QueryParameters, Query()]) -> Page[foo]:
     adapter = SPARQLModelAdapter(
         target="https://graphdb.r11.eu/repositories/RELEVEN",
         query=open(f"{path.dirname(path.realpath(__file__))}/releven_written_work.rq")
         .read()
         .replace("\n ", " "),
-        model=WrittenWork,
+        model=foo,
     )
-    parameters = QueryParameters(page=page, size=size)
-    return adapter.query(parameters)
+    return adapter.query(params)

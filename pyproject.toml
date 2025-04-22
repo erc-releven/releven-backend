@@ -8,8 +8,9 @@ dependencies = [
     "rdfproxy>=0.6.0",
     "fastapi[standard]>=0.115.4,<0.116",
     "gitpython>=3.1.43,<4",
+    "wisskas>=0.1.0",
 ]
 
 [tool.uv.sources]
-rdfproxy = { git = "https://github.com/acdh-oeaw/rdfproxy" }
+wisskas = { git = "https://github.com/acdh-oeaw/wisskas" }
 

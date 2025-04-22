@@ -1,0 +1,20 @@
+PREFIX aaao: <https://ontology.swissartresearch.net/aaao/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX lrmoo: <http://iflastandards.info/ns/lrm/lrmoo/>
+PREFIX rdfschema: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX star: <https://r11.eu/ns/star/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX r11: <https://r11.eu/ns/spec/>
+PREFIX r11pros: <https://r11.eu/ns/prosopography/>
+
+
+SELECT
+  ?G_external_authority
+    ?G_external_authority_p_external_authority_display_name
+
+WHERE {
+
+  ?G_external_authority a lrmoo:F11_Corporate_Body.
+    ?G_external_authority rdfschema:label ?G_external_authority_p_external_authority_display_name.
+
+}

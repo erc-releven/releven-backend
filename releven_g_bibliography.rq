@@ -1,0 +1,25 @@
+PREFIX aaao: <https://ontology.swissartresearch.net/aaao/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX lrmoo: <http://iflastandards.info/ns/lrm/lrmoo/>
+PREFIX rdfschema: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX star: <https://r11.eu/ns/star/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX r11: <https://r11.eu/ns/spec/>
+PREFIX r11pros: <https://r11.eu/ns/prosopography/>
+
+
+SELECT
+  ?G_bibliography
+    ?G_bibliography_g_publication
+
+WHERE {
+
+  ?G_bibliography a r11:Bibliography.
+
+  OPTIONAL {
+    ?G_bibliography a r11:Bibliography.
+    ?G_bibliography crm:P165_incorporates ?G_bibliography_g_publication.
+    ?G_bibliography_g_publication a r11:Publication.
+  }
+
+}

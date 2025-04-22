@@ -1,0 +1,20 @@
+PREFIX aaao: <https://ontology.swissartresearch.net/aaao/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX lrmoo: <http://iflastandards.info/ns/lrm/lrmoo/>
+PREFIX rdfschema: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX star: <https://r11.eu/ns/star/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX r11: <https://r11.eu/ns/spec/>
+PREFIX r11pros: <https://r11.eu/ns/prosopography/>
+
+
+SELECT
+  ?G_gender
+    ?G_gender_p_gender_display_name
+
+WHERE {
+
+  ?G_gender a r11pros:C11.
+    ?G_gender rdfschema:label ?G_gender_p_gender_display_name.
+
+}

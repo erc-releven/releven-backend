@@ -1,0 +1,20 @@
+PREFIX aaao: <https://ontology.swissartresearch.net/aaao/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX lrmoo: <http://iflastandards.info/ns/lrm/lrmoo/>
+PREFIX rdfschema: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX star: <https://r11.eu/ns/star/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX r11: <https://r11.eu/ns/spec/>
+PREFIX r11pros: <https://r11.eu/ns/prosopography/>
+
+
+SELECT
+  ?G_social_role
+    ?G_social_role_p_social_role_display_name
+
+WHERE {
+
+  ?G_social_role a r11pros:C2.
+    ?G_social_role rdfschema:label ?G_social_role_p_social_role_display_name.
+
+}

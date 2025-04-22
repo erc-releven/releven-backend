@@ -3,13 +3,11 @@ from rdfproxy import ConfigDict, SPARQLBinding
 from typing import Annotated
 
 
+
 class G_religious_affiliation(BaseModel):
     model_config = ConfigDict(
         title="",
     )
     id: Annotated[AnyUrl, SPARQLBinding("G_religious_affiliation")]
 
-    p_religious_affiliation_display_name: Annotated[
-        str | None,
-        SPARQLBinding("G_religious_affiliation_p_religious_affiliation_display_name"),
-    ] = None
+    p_religious_affiliation_display_name: Annotated[str | None, SPARQLBinding("G_religious_affiliation_p_religious_affiliation_display_name")] = None

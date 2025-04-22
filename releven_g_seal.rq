@@ -1,0 +1,29 @@
+PREFIX aaao: <https://ontology.swissartresearch.net/aaao/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX lrmoo: <http://iflastandards.info/ns/lrm/lrmoo/>
+PREFIX rdfschema: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX star: <https://r11.eu/ns/star/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX r11: <https://r11.eu/ns/spec/>
+PREFIX r11pros: <https://r11.eu/ns/prosopography/>
+
+
+SELECT
+  ?G_seal
+    ?G_seal_p_seal_seal_id
+    ?G_seal_g_seal_locative_status
+
+WHERE {
+
+  ?G_seal a r11:Lead_Seal.
+    ?G_seal rdfschema:label ?G_seal_p_seal_seal_id.
+
+  OPTIONAL {
+    ?G_seal a r11:Lead_Seal.
+    ?G_seal ^star:P141_aaao_ZP83 ?G_seal_0_g_seal_locative_status.
+    ?G_seal_0_g_seal_locative_status a star:E13_aaao_ZP83.
+    ?G_seal_0_g_seal_locative_status star:P140_aaao_ZP83 ?G_seal_g_seal_locative_status.
+    ?G_seal_g_seal_locative_status a aaao:ZE43_Physical_Locative_Status.
+  }
+
+}

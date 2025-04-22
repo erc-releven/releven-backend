@@ -1,0 +1,140 @@
+PREFIX aaao: <https://ontology.swissartresearch.net/aaao/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX lrmoo: <http://iflastandards.info/ns/lrm/lrmoo/>
+PREFIX rdfschema: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX star: <https://r11.eu/ns/star/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX r11: <https://r11.eu/ns/spec/>
+PREFIX r11pros: <https://r11.eu/ns/prosopography/>
+
+
+SELECT
+  ?G_person
+    ?G_person_p_person_display_name
+    ?G_person_g_person_id_assignment
+      ?G_person_g_person_id_assignment_g_person_id_assignment_identifier
+      ?G_person_g_person_id_assignment_g_external_authority
+    ?G_person_g_person_name_of_person_assertion
+    ?G_person_g_person_birth_of_person
+    ?G_person_g_person_gender_assignment
+    ?G_person_g_person_ethnic_group_membership_assertion
+    ?G_person_g_person_population_membership_assertion
+    ?G_person_g_person_part_of_embodiment_assertion
+    ?G_person_g_person_social_relationship
+    ?G_person_g_person_language_skill
+    ?G_person_g_person_social_role
+    ?G_person_g_person_legal_role
+    ?G_person_g_person_religious_affiliation
+    ?G_person_g_person_possession_assertion
+    ?G_person_g_person_death_of_person
+
+WHERE {
+
+  ?G_person a crm:E21_Person.
+    ?G_person rdfschema:label ?G_person_p_person_display_name.
+
+  OPTIONAL {
+    ?G_person a crm:E21_Person.
+    ?G_person ^crm:P140_assigned_attribute_to ?G_person_g_person_id_assignment.
+    ?G_person_g_person_id_assignment a crm:E15_Identifier_Assignment.
+      ?G_person a crm:E21_Person.
+      ?G_person ^crm:P140_assigned_attribute_to ?G_person_g_person_id_assignment.
+      ?G_person_g_person_id_assignment a crm:E15_Identifier_Assignment.
+      ?G_person_g_person_id_assignment crm:P37_assigned ?G_person_g_person_id_assignment_g_person_id_assignment_identifier.
+      ?G_person_g_person_id_assignment_g_person_id_assignment_identifier a crm:E42_Identifier.
+      ?G_person a crm:E21_Person.
+      ?G_person ^crm:P140_assigned_attribute_to ?G_person_g_person_id_assignment.
+      ?G_person_g_person_id_assignment a crm:E15_Identifier_Assignment.
+      ?G_person_g_person_id_assignment crm:P14_carried_out_by ?G_person_g_person_id_assignment_g_external_authority.
+      ?G_person_g_person_id_assignment_g_external_authority a lrmoo:F11_Corporate_Body.
+  }
+
+  OPTIONAL {
+    ?G_person a crm:E21_Person.
+    ?G_person ^star:P140_crm_P1 ?G_person_g_person_name_of_person_assertion.
+    ?G_person_g_person_name_of_person_assertion a star:E13_crm_P1.
+  }
+    ?G_person a crm:E21_Person.
+    ?G_person ^star:P141_crm_P98 ?G_person_0_g_person_birth_of_person.
+    ?G_person_0_g_person_birth_of_person a star:E13_crm_P98.
+    ?G_person_0_g_person_birth_of_person star:P140_crm_P98 ?G_person_g_person_birth_of_person.
+    ?G_person_g_person_birth_of_person a crm:E67_Birth.
+
+  OPTIONAL {
+    ?G_person a crm:E21_Person.
+    ?G_person ^star:P141_crm_P41 ?G_person_0_g_person_gender_assignment.
+    ?G_person_0_g_person_gender_assignment a star:E13_crm_P41.
+    ?G_person_0_g_person_gender_assignment star:P140_crm_P41 ?G_person_g_person_gender_assignment.
+    ?G_person_g_person_gender_assignment a r11:Gender_Assignment.
+  }
+
+  OPTIONAL {
+    ?G_person a crm:E21_Person.
+    ?G_person ^star:P141_crm_P107 ?G_person_g_person_ethnic_group_membership_assertion.
+    ?G_person_g_person_ethnic_group_membership_assertion a star:E13_crm_P107.
+  }
+
+  OPTIONAL {
+    ?G_person a crm:E21_Person.
+    ?G_person ^star:P141_aaao_ZP78 ?G_person_g_person_population_membership_assertion.
+    ?G_person_g_person_population_membership_assertion a star:E13_aaao_ZP78.
+  }
+
+  OPTIONAL {
+    ?G_person a crm:E21_Person.
+    ?G_person ^star:P141_crm_P46 ?G_person_g_person_part_of_embodiment_assertion.
+    ?G_person_g_person_part_of_embodiment_assertion a star:E13_crm_P46.
+  }
+
+  OPTIONAL {
+    ?G_person a crm:E21_Person.
+    ?G_person ^star:P141_sdhss_P17 ?G_person_0_g_person_social_relationship.
+    ?G_person_0_g_person_social_relationship a star:E13_sdhss_P17.
+    ?G_person_0_g_person_social_relationship star:P140_sdhss_P17 ?G_person_g_person_social_relationship.
+    ?G_person_g_person_social_relationship a r11pros:C3.
+  }
+
+  OPTIONAL {
+    ?G_person a crm:E21_Person.
+    ?G_person ^star:P140_sdhss_P38 ?G_person_0_g_person_language_skill.
+    ?G_person_0_g_person_language_skill a star:E13_sdhss_P38.
+    ?G_person_0_g_person_language_skill star:P141_sdhss_P38 ?G_person_g_person_language_skill.
+    ?G_person_g_person_language_skill a r11pros:C21.
+  }
+
+  OPTIONAL {
+    ?G_person a crm:E21_Person.
+    ?G_person ^star:P141_sdhss_P13 ?G_person_0_g_person_social_role.
+    ?G_person_0_g_person_social_role a star:E13_sdhss_P13.
+    ?G_person_0_g_person_social_role star:P140_sdhss_P13 ?G_person_g_person_social_role.
+    ?G_person_g_person_social_role a r11pros:C1.
+  }
+
+  OPTIONAL {
+    ?G_person a crm:E21_Person.
+    ?G_person ^star:P141_sdhss_P26 ?G_person_0_g_person_legal_role.
+    ?G_person_0_g_person_legal_role a star:E13_sdhss_P26.
+    ?G_person_0_g_person_legal_role star:P140_sdhss_P26 ?G_person_g_person_legal_role.
+    ?G_person_g_person_legal_role a r11pros:C13.
+  }
+
+  OPTIONAL {
+    ?G_person a crm:E21_Person.
+    ?G_person ^star:P141_sdhss_P36 ?G_person_0_g_person_religious_affiliation.
+    ?G_person_0_g_person_religious_affiliation a star:E13_sdhss_P36.
+    ?G_person_0_g_person_religious_affiliation star:P140_sdhss_P36 ?G_person_g_person_religious_affiliation.
+    ?G_person_g_person_religious_affiliation a r11pros:C23.
+  }
+
+  OPTIONAL {
+    ?G_person a crm:E21_Person.
+    ?G_person ^star:P141_crm_P51 ?G_person_g_person_possession_assertion.
+    ?G_person_g_person_possession_assertion a star:E13_crm_P51.
+  }
+    ?G_person a crm:E21_Person.
+    ?G_person ^star:P141_crm_P100 ?G_person_0_g_person_death_of_person.
+    ?G_person_0_g_person_death_of_person a star:E13_crm_P100.
+    ?G_person_0_g_person_death_of_person star:P140_crm_P100 ?G_person_g_person_death_of_person.
+    ?G_person_g_person_death_of_person a crm:E69_Death.
+
+}

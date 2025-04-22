@@ -3,6 +3,7 @@ from rdfproxy import ConfigDict, SPARQLBinding
 from typing import Annotated
 
 
+
 class G_social_relationship(BaseModel):
     model_config = ConfigDict(
         title="",
@@ -10,12 +11,5 @@ class G_social_relationship(BaseModel):
     )
     id: Annotated[AnyUrl, SPARQLBinding("G_social_relationship")]
 
-    p_social_relationship_display_name: Annotated[
-        str, SPARQLBinding("G_social_relationship_p_social_relationship_display_name")
-    ]
-    g_social_relationship_categorisation_assertion: Annotated[
-        list[AnyUrl],
-        SPARQLBinding(
-            "G_social_relationship_g_social_relationship_categorisation_assertion"
-        ),
-    ] = None
+    p_social_relationship_display_name: Annotated[str, SPARQLBinding("G_social_relationship_p_social_relationship_display_name")]
+    g_social_relationship_categorisation_assertion: Annotated[list[AnyUrl], SPARQLBinding("G_social_relationship_g_social_relationship_categorisation_assertion")]

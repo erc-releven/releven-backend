@@ -7,8 +7,8 @@ docker build -t releven-backend .
 docker run -p 8000:5000 releven-backend
 ```
 
-Run locally with poetry:
+Run locally with `uv`:
 ```bash
-poetry install
-poetry run fastapi dev releven.py --port 8000
+uv sync
+uv run fastapi dev releven.py --port 8000
 ```

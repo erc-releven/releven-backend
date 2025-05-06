@@ -1,9 +1,10 @@
 #!/bin/bash
 
+# remove semantic g_/p_ prefixes for nicer automatically generate class and endpoint names
 sed -e 's/id>[gp]_/id>/g' "pathbuilder_20250410_expanded.xml" > tmp.xml
 
 uv run wisskas -vvv tmp.xml endpoints --git \
-  -a "https://wisski-graphdb.acdh-dev.oeaw.ac.at/repositories/blank" \
+  -a "https://graphdb.r11.eu/repositories/RELEVEN_2025" \
   -p aaao "https://ontology.swissartresearch.net/aaao/" \
   -p crm "http://www.cidoc-crm.org/cidoc-crm/" \
   -p lrmoo "http://iflastandards.info/ns/lrm/lrmoo/" \

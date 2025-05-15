@@ -551,16 +551,12 @@ wheels = [
 [[package]]
 name = "rdfproxy"
 version = "0.6.0"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/acdh-oeaw/rdfproxy.git?branch=lupl%2Fdetail-view#850ff4e1530f87e15b446c8d24dff9008c7699e9" }
 dependencies = [
     { name = "httpx" },
     { name = "pandas" },
     { name = "pydantic" },
     { name = "rdflib" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/d1/a9/0f7502ef869440fcf1c560c7bf7685bf02c2be6cb57a28b6777b67faa1cb/rdfproxy-0.6.0.tar.gz", hash = "sha256:3cd511acfa4499282d4ab83893df2f92b66efcae7a2305d2e00bbf47b70ae91e", size = 111914 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/70/65/6846cf4c74c7a8ad322434a3b369f9ff56c9a274ec4b7bb66bbe212e66de/rdfproxy-0.6.0-py3-none-any.whl", hash = "sha256:669553992e2b5d0289ce96cf924e5b6f5258335682ea15aa23959c744195e4e6", size = 34144 },
 ]
 
 [[package]]
@@ -578,7 +574,7 @@ dependencies = [
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.4,<0.116" },
     { name = "gitpython", specifier = ">=3.1.43,<4" },
-    { name = "rdfproxy", specifier = ">=0.6.0" },
+    { name = "rdfproxy", git = "https://github.com/acdh-oeaw/rdfproxy.git?branch=lupl%2Fdetail-view" },
     { name = "wisskas", git = "https://github.com/acdh-oeaw/wisskas" },
 ]
 
@@ -609,16 +605,16 @@ wheels = [
 
 [[package]]
 name = "rich-toolkit"
-version = "0.14.5"
+version = "0.14.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
     { name = "rich" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d1/24/f0678256fbe0643b4ba00a460f4b736ef07042e459f8d4087c8b7011ab81/rich_toolkit-0.14.5.tar.gz", hash = "sha256:1cb7a3fa0bdbf35793460708664f3f797e8b18cedec9cd41a7e6125e4bc6272b", size = 104799 }
+sdist = { url = "https://files.pythonhosted.org/packages/f6/31/b6d055f291a660a7bcaec4bcc9457b9fef8ecb6293e527b1eef1840aefd4/rich_toolkit-0.14.6.tar.gz", hash = "sha256:9dbd40e83414b84e828bf899115fff8877ce5951b73175f44db142902f07645d", size = 110805 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d1/13/621cc551b72de51e6e5cb7cfc510a141e1858bd380ee3c8108fbda4a6be0/rich_toolkit-0.14.5-py3-none-any.whl", hash = "sha256:2fe9846ecbf5d0cdf236c7f43452b68d9da1436a81594aba6b79b3c48b05703b", size = 24791 },
+    { url = "https://files.pythonhosted.org/packages/2e/3c/7a824c0514e87c61000583ac22c8321da6dc8e58a93d5f56e583482a2ee0/rich_toolkit-0.14.6-py3-none-any.whl", hash = "sha256:764f3a5f9e4b539ce805596863299e8982599514906dc5e3ccc2d390ef74c301", size = 24815 },
 ]
 
 [[package]]
@@ -671,7 +667,7 @@ wheels = [
 
 [[package]]
 name = "typer"
-version = "0.15.3"
+version = "0.15.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -679,9 +675,9 @@ dependencies = [
     { name = "shellingham" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/98/1a/5f36851f439884bcfe8539f6a20ff7516e7b60f319bbaf69a90dc35cc2eb/typer-0.15.3.tar.gz", hash = "sha256:818873625d0569653438316567861899f7e9972f2e6e0c16dab608345ced713c", size = 101641 }
+sdist = { url = "https://files.pythonhosted.org/packages/6c/89/c527e6c848739be8ceb5c44eb8208c52ea3515c6cf6406aa61932887bf58/typer-0.15.4.tar.gz", hash = "sha256:89507b104f9b6a0730354f27c39fae5b63ccd0c95b1ce1f1a6ba0cfd329997c3", size = 101559 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/48/20/9d953de6f4367163d23ec823200eb3ecb0050a2609691e512c8b95827a9b/typer-0.15.3-py3-none-any.whl", hash = "sha256:c86a65ad77ca531f03de08d1b9cb67cd09ad02ddddf4b34745b5008f43b239bd", size = 45253 },
+    { url = "https://files.pythonhosted.org/packages/c9/62/d4ba7afe2096d5659ec3db8b15d8665bdcb92a3c6ff0b95e99895b335a9c/typer-0.15.4-py3-none-any.whl", hash = "sha256:eb0651654dcdea706780c466cf06d8f174405a659ffff8f163cfbfee98c0e173", size = 45258 },
 ]
 
 [[package]]
@@ -828,7 +824,7 @@ wheels = [
 [[package]]
 name = "wisskas"
 version = "0.1.0"
-source = { git = "https://github.com/acdh-oeaw/wisskas#f8d718f41b54d3bb13332694fe0955925d2e78c2" }
+source = { git = "https://github.com/acdh-oeaw/wisskas#297bad14c01cf5177f8ddf92c27f97ab8d46b594" }
 dependencies = [
     { name = "jinja2" },
     { name = "lxml" },

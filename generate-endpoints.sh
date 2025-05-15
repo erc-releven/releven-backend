@@ -1,9 +1,11 @@
 #!/bin/bash
 
+# uv sync --upgrade
+
 # remove semantic g_/p_ prefixes for nicer automatically generate class and endpoint names
 sed -e 's/id>[gp]_/id>/g' "pathbuilder_20250410_expanded.xml" > tmp.xml
 
-uv run wisskas -vvv tmp.xml endpoints --git \
+uv run wisskas -v tmp.xml endpoints --git \
   -a "https://graphdb.r11.eu/repositories/RELEVEN_2025" \
   -p aaao "https://ontology.swissartresearch.net/aaao/" \
   -p crm "http://www.cidoc-crm.org/cidoc-crm/" \
@@ -14,21 +16,22 @@ uv run wisskas -vvv tmp.xml endpoints --git \
   -p r11 "https://r11.eu/ns/spec/" \
   -p r11pros "https://r11.eu/ns/prosopography/" \
   -c -0 \
-  -ei external_authority '*' \
-  -ei person '*' 'person_id_assignment.*' \
-  -ei bibliography '*' \
-  -ei written_text '*' \
-  -ei publication '*' \
-  -ei seal '*' \
-  -ei seal_collection '*' \
-  -ei boulloterion '*' \
-  -ei author_group '*' \
-  -ei passage '*' \
-  -ei ethnic_group '*' \
-  -ei gender '*' \
-  -ei social_relationship '*' \
-  -ei language '*' \
-  -ei religious_affiliation '*' \
-  -ei legal_status '*' \
-  -ei social_role '*' \
+  -li external_authority '*' \
+  -li person 'person_display_name' 'person_id_assignment.**' \
+  -ii person/detail id 'person_display_name' 'person_id_assignment.**' '*' \
+  -li bibliography '*' \
+  -li written_text '*' \
+  -li publication '*' \
+  -li seal '*' \
+  -li seal_collection '*' \
+  -li boulloterion '*' \
+  -li author_group '*' \
+  -li passage '*' \
+  -li ethnic_group '*' \
+  -li gender '*' \
+  -li social_relationship '*' \
+  -li language '*' \
+  -li religious_affiliation '*' \
+  -li legal_status '*' \
+  -li social_role '*' \
   -o releven || exit 1

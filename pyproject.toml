@@ -5,12 +5,13 @@ description = ""
 authors = [{ name = "Kevin Stadler", email = "kevin.stadler@oeaw.ac.at" }]
 requires-python = "~=3.12"
 dependencies = [
-    "rdfproxy>=0.6.0",
     "fastapi[standard]>=0.115.4,<0.116",
     "gitpython>=3.1.43,<4",
+    "rdfproxy>=0.6.0",
     "wisskas>=0.1.0",
 ]
 
 [tool.uv.sources]
 wisskas = { git = "https://github.com/acdh-oeaw/wisskas" }
+rdfproxy = { git = "https://github.com/acdh-oeaw/rdfproxy.git", branch = "lupl/detail-view" }
 

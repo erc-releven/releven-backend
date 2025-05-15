@@ -16,22 +16,23 @@ uv run wisskas -v tmp.xml endpoints --git \
   -p r11 "https://r11.eu/ns/spec/" \
   -p r11pros "https://r11.eu/ns/prosopography/" \
   -c -0 \
-  -li external_authority '*' \
-  -li person 'person_display_name' 'person_id_assignment.**' \
-  -ii person/detail id 'person_display_name' 'person_id_assignment.**' '*' \
+  -li author_group '*' \
   -li bibliography '*' \
-  -li written_text '*' \
+  -li boulloterion '*' \
+  -li ethnic_group '*' \
+  -li external_authority '*' \
+  -li gender '*' \
+  -li language '*' \
+  -li legal_status '*' \
+  -li passage '*' \
+  -li person 'person_display_name' 'person_id_assignment.**' \
+  -ii person/person/detail id 'person_display_name' 'person_id_assignment.**' '*' \
+  -li place '*' \
   -li publication '*' \
+  -li religious_affiliation '*' \
   -li seal '*' \
   -li seal_collection '*' \
-  -li boulloterion '*' \
-  -li author_group '*' \
-  -li passage '*' \
-  -li ethnic_group '*' \
-  -li gender '*' \
   -li social_relationship '*' \
-  -li language '*' \
-  -li religious_affiliation '*' \
-  -li legal_status '*' \
   -li social_role '*' \
+  -li written_text '*' \
   -o releven || exit 1

@@ -824,7 +824,7 @@ wheels = [
 [[package]]
 name = "wisskas"
 version = "0.1.0"
-source = { git = "https://github.com/acdh-oeaw/wisskas#297bad14c01cf5177f8ddf92c27f97ab8d46b594" }
+source = { git = "https://github.com/acdh-oeaw/wisskas#56d9fcf193e15057f389e47cbccbb984514f0649" }
 dependencies = [
     { name = "jinja2" },
     { name = "lxml" },

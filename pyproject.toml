@@ -13,5 +13,5 @@ dependencies = [
 
 [tool.uv.sources]
 wisskas = { git = "https://github.com/acdh-oeaw/wisskas" }
-rdfproxy = { git = "https://github.com/acdh-oeaw/rdfproxy.git", branch = "lupl/detail-view" }
+rdfproxy = { git = "https://github.com/acdh-oeaw/rdfproxy.git" }
 

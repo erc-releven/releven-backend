@@ -3,7 +3,7 @@
 # uv sync --upgrade
 
 # remove semantic g_/p_ prefixes for nicer automatically generate class and endpoint names
-sed -e 's/id>[gp]_/id>/g' "pathbuilder_20250410_expanded.xml" > tmp.xml
+sed -e 's/id>[gp]_/id>/g' "pathbuilder_wisski.xml" > tmp.xml
 
 uv run wisskas -v tmp.xml endpoints --git \
   -a "https://graphdb.r11.eu/repositories/RELEVEN_2025" \
@@ -25,14 +25,13 @@ uv run wisskas -v tmp.xml endpoints --git \
   -li language '*' \
   -li legal_status '*' \
   -li passage '*' \
-  -li person 'person_display_name' 'person_id_assignment.**' \
-  -ii person/person/detail id 'person_display_name' 'person_id_assignment.**' '*' \
+  -li person 'person_display_name' 'person_id_assignment.*' 'person_id_assignment.*.*' \
+  -ii person/person/detail id 'person_display_name' 'person_id_assignment.*' 'person_id_assignment.*.*' '*' \
   -li place '*' \
   -li publication '*' \
   -li religious_affiliation '*' \
   -li seal '*' \
   -li seal_collection '*' \
   -li social_relationship '*' \
-  -li social_role '*' \
   -li written_text '*' \
   -o releven || exit 1

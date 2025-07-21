@@ -33,5 +33,6 @@ uv run wisskas -v tmp.xml endpoints --git \
   -li seal '*' \
   -li seal_collection '*' \
   -li social_relationship '*' \
-  -li written_text '*' \
+  -li written_text/text '*' 'written_text_creation.*' \
+  -ii written_text/text/detail id '*' 'written_text_creation.*' 'written_text_creation.written_text_creation_author_assertion.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_is.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_by.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_src.*' \
   -o releven || exit 1

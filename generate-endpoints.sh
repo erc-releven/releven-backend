@@ -25,8 +25,8 @@ uv run wisskas -v tmp.xml endpoints --git \
   -li language '*' \
   -li legal_status '*' \
   -li passage '*' \
-  -li person/people 'person_display_name' 'person_id_assignment.*' 'person_id_assignment.person_id_assignment_identifier.*' 'person_name_of_person_assertion.person_name_of_person_is' \
-  -ii person/people/detail id 'person_display_name' 'person_id_assignment.*' 'person_id_assignment.person_id_assignment_identifier.*' 'person_name_of_person_assertion.person_name_of_person_is' '*' \
+  -li person/people 'person_display_name' 'person_id_assignment.*' 'person_id_assignment.person_id_assignment_identifier.*' 'person_id_assignment.person_id_assignment_by.external_authority_display_name' 'person_name_of_person_assertion.person_name_of_person_is' \
+  -ii person/people/detail id 'person_display_name' '*' 'person_gender_assignment.person_gender_assignment_gender_assertion.person_gender_assignment_gender_is.gender_display_name' 'person_id_assignment.*' 'person_id_assignment.person_id_assignment_identifier.*' 'person_name_of_person_assertion.*' 'person_name_of_person_assertion.person_name_of_person_by.*' 'person_name_of_person_assertion.person_name_of_person_src.*' \
   -li place '*' \
   -li publication '*' \
   -li religious_affiliation '*' \

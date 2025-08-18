@@ -599,12 +599,16 @@ wheels = [
 [[package]]
 name = "rdfproxy"
 version = "0.9.0"
-source = { git = "https://github.com/acdh-oeaw/rdfproxy.git#40d10001d05725f10866b66f8693d04d63a212c6" }
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "httpx" },
     { name = "pandas" },
     { name = "pydantic" },
     { name = "rdflib" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/45/b8/260247151ad31de26be34c1357f09c4ff9362c403f6e5c8bbe77f6ad8101/rdfproxy-0.9.0.tar.gz", hash = "sha256:4adc7e6c5c656a477b00590c8b1b86a83f1bb6536b0e30b00a5369a828e72b47", size = 123321, upload-time = "2025-08-11T13:57:46.021Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ef/d6/b3e5445a6832730490f13e5634d899e1ac6179d9c2fb08c6ecb7a22142d5/rdfproxy-0.9.0-py3-none-any.whl", hash = "sha256:11067e5e6e01fd49fb92b372b2bb57f2a60bc54babdda4cc665a10f64a2e3ed5", size = 39106, upload-time = "2025-08-11T13:57:44.594Z" },
 ]
 
 [[package]]
@@ -622,7 +626,7 @@ dependencies = [
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.4,<0.116" },
     { name = "gitpython", specifier = ">=3.1.43,<4" },
-    { name = "rdfproxy", git = "https://github.com/acdh-oeaw/rdfproxy.git" },
+    { name = "rdfproxy", specifier = ">=0.9.0" },
     { name = "wisskas", git = "https://github.com/acdh-oeaw/wisskas" },
 ]
 
@@ -713,15 +717,15 @@ wheels = [
 
 [[package]]
 name = "sentry-sdk"
-version = "2.34.1"
+version = "2.35.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "certifi" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/3a/38/10d6bfe23df1bfc65ac2262ed10b45823f47f810b0057d3feeea1ca5c7ed/sentry_sdk-2.34.1.tar.gz", hash = "sha256:69274eb8c5c38562a544c3e9f68b5be0a43be4b697f5fd385bf98e4fbe672687", size = 336969, upload-time = "2025-07-30T11:13:37.93Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/31/83/055dc157b719651ef13db569bb8cf2103df11174478649735c1b2bf3f6bc/sentry_sdk-2.35.0.tar.gz", hash = "sha256:5ea58d352779ce45d17bc2fa71ec7185205295b83a9dbb5707273deb64720092", size = 343014, upload-time = "2025-08-14T17:11:20.223Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/2d/3e/bb34de65a5787f76848a533afbb6610e01fbcdd59e76d8679c254e02255c/sentry_sdk-2.34.1-py2.py3-none-any.whl", hash = "sha256:b7a072e1cdc5abc48101d5146e1ae680fa81fe886d8d95aaa25a0b450c818d32", size = 357743, upload-time = "2025-07-30T11:13:36.145Z" },
+    { url = "https://files.pythonhosted.org/packages/36/3d/742617a7c644deb0c1628dcf6bb2d2165ab7c6aab56fe5222758994007f8/sentry_sdk-2.35.0-py2.py3-none-any.whl", hash = "sha256:6e0c29b9a5d34de8575ffb04d289a987ff3053cf2c98ede445bea995e3830263", size = 363806, upload-time = "2025-08-14T17:11:18.29Z" },
 ]
 
 [[package]]
@@ -971,7 +975,7 @@ wheels = [
 [[package]]
 name = "wisskas"
 version = "0.1.0"
-source = { git = "https://github.com/acdh-oeaw/wisskas#d9c102242e899ca157cd510fa8ad9777816eb0ef" }
+source = { git = "https://github.com/acdh-oeaw/wisskas#a62f037c6edea7bdeb5aa8540571ec91396343b3" }
 dependencies = [
     { name = "jinja2" },
     { name = "lxml" },

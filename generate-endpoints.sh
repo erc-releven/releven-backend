@@ -36,3 +36,7 @@ uv run wisskas tmp.xml endpoints --git \
   -li written_text/text\|written_text_display_name '*' 'written_text_creation.*' \
   -ii written_text/text/detail id '*' 'written_text_creation.*' 'written_text_creation.written_text_creation_author_assertion.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_is.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_by.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_src.*' \
   -o releven || exit 1
+
+for PATCHFILE in `ls *.patch`; do
+  patch -p0 < "$PATCHFILE"
+done

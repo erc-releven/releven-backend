@@ -1,0 +1,7 @@
+--- releven_people.py	2025-08-18 17:55:22.683626314 +0200
++++ releven_people.py.changed	2025-08-18 17:53:09.647106856 +0200
+@@ -55,3 +55,4 @@
+     person_display_name: Annotated[str | None, SPARQLBinding("People_person_display_name")]
+     person_id_assignment: Annotated[list[IdentityInOtherServices], SPARQLBinding("People_person_id_assignment")]
+     person_name_of_person_assertion: Annotated[list[NameOfPersonAssertion], SPARQLBinding("People_person_name_of_person_assertion")]
++    n_assertions: int

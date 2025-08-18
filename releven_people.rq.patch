@@ -1,0 +1,91 @@
+--- releven_people.rq	2025-08-18 17:55:22.683626314 +0200
++++ releven_people.rq.changed	2025-08-18 17:55:12.197557316 +0200
+@@ -18,6 +18,7 @@
+         ?People_person_id_assignment_external_authority_external_authority_display_name
+     ?People_person_name_of_person_assertion
+       ?People_person_name_of_person_assertion_person_name_of_person_is
++    ?n_assertions
+ 
+ WHERE {
+ 
+@@ -64,5 +65,78 @@
+       ?People_person_name_of_person_assertion_0_person_name_of_person_is crm:P190_has_symbolic_content ?People_person_name_of_person_assertion_person_name_of_person_is .
+     }
+   }
++  OPTIONAL { SELECT (COUNT(?People_person_gender_assignment) AS ?People_person_gender_assignment_count) ?People WHERE {  
++      ?People ^crm:P141_assigned ?People_0_person_gender_assignment .
++      ?People_0_person_gender_assignment a star:E13_crm_P41 .
++      ?People_0_person_gender_assignment crm:P140_assigned_attribute_to ?People_person_gender_assignment .
++      ?People_person_gender_assignment a r11:Gender_Assignment .
++  } GROUP BY ?People }
++  BIND (COALESCE(?People_person_gender_assignment_count, 0) AS ?People_person_gender_assignment)
++
++  OPTIONAL { SELECT (COUNT(?People_person_ethnic_group_membership_assertion) AS ?People_person_ethnic_group_membership_assertion_count) ?People WHERE {  
++      ?People ^crm:P141_assigned ?People_person_ethnic_group_membership_assertion .
++      ?People_person_ethnic_group_membership_assertion a star:E13_crm_P107 .
++  } GROUP BY ?People }
++  BIND (COALESCE(?People_person_ethnic_group_membership_assertion_count, 0) AS ?People_person_ethnic_group_membership_assertion)
++
++  OPTIONAL { SELECT (COUNT(?People_person_population_membership_assertion) AS ?People_person_population_membership_assertion_count) ?People WHERE {  
++      ?People ^crm:P141_assigned ?People_person_population_membership_assertion .
++      ?People_person_population_membership_assertion a star:E13_aaao_ZP78 .
++  } GROUP BY ?People }
++  BIND (COALESCE(?People_person_population_membership_assertion_count, 0) AS ?People_person_population_membership_assertion)
++
++  OPTIONAL { SELECT (COUNT(?People_person_part_of_manifest_group_assertion) AS ?People_person_part_of_manifest_group_assertion_count) ?People WHERE {  
++      ?People ^crm:P141_assigned ?People_person_part_of_manifest_group_assertion .
++      ?People_person_part_of_manifest_group_assertion a star:E13_crm_P46 .
++  } GROUP BY ?People }
++  BIND (COALESCE(?People_person_part_of_manifest_group_assertion_count, 0) AS ?People_person_part_of_manifest_group_assertion)
++
++  OPTIONAL { SELECT (COUNT(?People_person_social_relationship) AS ?People_person_social_relationship_count) ?People WHERE {  
++      ?People ^crm:P141_assigned ?People_0_person_social_relationship .
++      ?People_0_person_social_relationship a star:E13_sdhss_P17 .
++      ?People_0_person_social_relationship crm:P140_assigned_attribute_to ?People_person_social_relationship .
++      ?People_person_social_relationship a r11pros:C3 .
++  } GROUP BY ?People }
++  BIND (COALESCE(?People_person_social_relationship_count, 0) AS ?People_person_social_relationship)
++
++  OPTIONAL { SELECT (COUNT(?People_person_language_skill) AS ?People_person_language_skill_count) ?People WHERE {  
++      ?People ^crm:P140_assigned_attribute_to ?People_0_person_language_skill .
++      ?People_0_person_language_skill a star:E13_sdhss_P38 .
++      ?People_0_person_language_skill crm:P141_assigned ?People_person_language_skill .
++      ?People_person_language_skill a r11pros:C21 .
++  } GROUP BY ?People }
++  BIND (COALESCE(?People_person_language_skill_count, 0) AS ?People_person_language_skill)
++
++  OPTIONAL { SELECT (COUNT(?People_person_social_role) AS ?People_person_social_role_count) ?People WHERE {  
++      ?People ^crm:P141_assigned ?People_0_person_social_role .
++      ?People_0_person_social_role a star:E13_sdhss_P13 .
++      ?People_0_person_social_role crm:P140_assigned_attribute_to ?People_person_social_role .
++      ?People_person_social_role a r11pros:C1 .
++  } GROUP BY ?People }
++  BIND (COALESCE(?People_person_social_role_count, 0) AS ?People_person_social_role)
++
++  OPTIONAL { SELECT (COUNT(?People_person_legal_role) AS ?People_person_legal_role_count) ?People WHERE {  
++      ?People ^crm:P141_assigned ?People_0_person_legal_role .
++      ?People_0_person_legal_role a star:E13_sdhss_P26 .
++      ?People_0_person_legal_role crm:P140_assigned_attribute_to ?People_person_legal_role .
++      ?People_person_legal_role a r11pros:C13 .
++  } GROUP BY ?People }
++  BIND (COALESCE(?People_person_legal_role_count, 0) AS ?People_person_legal_role)
++
++  OPTIONAL { SELECT (COUNT(?People_person_religious_affiliation) AS ?People_person_religious_affiliation_count) ?People WHERE {  
++      ?People ^crm:P141_assigned ?People_0_person_religious_affiliation .
++      ?People_0_person_religious_affiliation a star:E13_sdhss_P36 .
++      ?People_0_person_religious_affiliation crm:P140_assigned_attribute_to ?People_person_religious_affiliation .
++      ?People_person_religious_affiliation a r11pros:C23 .
++  } GROUP BY ?People }
++  BIND (COALESCE(?People_person_religious_affiliation_count, 0) AS ?People_person_religious_affiliation)
++
++  OPTIONAL { SELECT (COUNT(?People_person_possession_assertion) AS ?People_person_possession_assertion_count) ?People WHERE {  
++      ?People ^crm:P141_assigned ?People_person_possession_assertion .
++      ?People_person_possession_assertion a star:E13_crm_P51 .
++  } GROUP BY ?People }
++  BIND (COALESCE(?People_person_possession_assertion_count, 0) AS ?People_person_possession_assertion)
+ 
+-}
+\ No newline at end of file
++  BIND (?People_person_gender_assignment + ?People_person_ethnic_group_membership_assertion + ?People_person_population_membership_assertion + ?People_person_part_of_manifest_group_assertion + ?People_person_social_relationship + ?People_person_language_skill + ?People_person_legal_role + ?People_person_religious_affiliation + ?People_person_possession_assertion AS ?n_assertions)
++
++}

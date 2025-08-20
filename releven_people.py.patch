@@ -1,7 +1,17 @@
---- releven_people.py	2025-08-18 17:55:22.683626314 +0200
-+++ releven_people.py.changed	2025-08-18 17:53:09.647106856 +0200
-@@ -55,3 +55,4 @@
-     person_display_name: Annotated[str | None, SPARQLBinding("People_person_display_name")]
-     person_id_assignment: Annotated[list[IdentityInOtherServices], SPARQLBinding("People_person_id_assignment")]
-     person_name_of_person_assertion: Annotated[list[NameOfPersonAssertion], SPARQLBinding("People_person_name_of_person_assertion")]
+--- releven_people.py	2025-08-20 11:45:56.562581296 +0200
++++ releven_people.py.changed	2025-08-20 11:45:17.861002892 +0200
+@@ -51,3 +51,14 @@
+     person_display_name: Annotated[str | None, SPARQLBinding("P_person_display_name")]
+     person_id_assignment: Annotated[list[IdentityInOtherServices], SPARQLBinding("P_person_id_assignment")]
+     person_name_of_person_assertion: Annotated[list[NameOfPersonAssertion], SPARQLBinding("P_person_name_of_person_assertion")]
++    person_gender_assignment: Annotated[int, SPARQLBinding("P_person_gender_assignment")]
++    person_ethnic_group_membership_assertion: Annotated[int, SPARQLBinding("P_person_ethnic_group_membership_assertion")]
++    person_population_membership_assertion: Annotated[int, SPARQLBinding("P_person_population_membership_assertion")]
++    person_part_of_manifest_group_assertion: Annotated[int, SPARQLBinding("P_person_part_of_manifest_group_assertion")]
++    person_social_relationship: Annotated[int, SPARQLBinding("P_person_social_relationship")]
++    person_language_skill: Annotated[int, SPARQLBinding("P_person_language_skill")]
++    person_social_role: Annotated[int, SPARQLBinding("P_person_social_role")]
++    person_legal_role: Annotated[int, SPARQLBinding("P_person_legal_role")]
++    person_religious_affiliation: Annotated[int, SPARQLBinding("P_person_religious_affiliation")]
++    person_possession_assertion: Annotated[int, SPARQLBinding("P_person_possession_assertion")]
 +    n_assertions: int

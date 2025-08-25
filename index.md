@@ -2,19 +2,22 @@
 toc: true
 ---
 
+1. TOC
+{:toc}
+
 ## Motivation
 
 Linked data and knowledge graph technologies are powerful tools for integrating, connecting, and reasoning over complex information from diverse sources. They excel at revealing relationships between entities, supporting semantic search, and powering AI systems with structured context. However, for non-specialist users, the technical representations of triples, ontologies, and graph structures can be difficult to understand and interact with. To make these benefits accessible, simpler, more intuitive data representations—such as tables, visual maps, or natural language interfaces—are often needed to bridge the gap between advanced semantic technologies and everyday users.
 
-We address this problem with `rdfproxy`, a Python library for mapping SPARQL query results to Pydantic models, which allows building REST APIs on top of SPARQL endpoints.
+We address this problem with [`rdfproxy`](https://github.com/acdh-oeaw/rdfproxy), a Python library for mapping SPARQL query results to Pydantic models, which allows building REST APIs on top of SPARQL endpoints.
 
-Our particular case study is the ERC project RELEVEN: the aim of RELEVEN is to cast a clearer light on the events of the "short eleventh century" (c. 1030–1095). The key to achieving this is to find a way to link and connect large amounts of disparate sorts of data about the eleventh century that allows us to incorporate and model different, and even conflicting, perspectives about what the data tell us. The RELEVEN project implements a heavily reified CIDOC-CRM-based knowledge graph to represent historical claims with full contextual provenance.
+Our particular case study is the ERC project [RELEVEN](https://releven.univie.ac.at/): the aim of RELEVEN is to cast a clearer light on the events of the "short eleventh century" (c. 1030–1095). The key to achieving this is to find a way to link and connect large amounts of disparate sorts of data about the eleventh century that allows us to incorporate and model different, and even conflicting, perspectives about what the data tell us. The RELEVEN project implements a heavily reified CIDOC-CRM-based knowledge graph to represent historical claims with full contextual provenance.
 
 ```
 TODO star model graph?
 ```
 
-## Toolchain: `wisskas` and `rdfproxy`
+## Toolchain demo
 
 The STAR model is complex, so writing the individual (highly reified) queries itself is cumbersome. Instead, the `rdfproxy` input (pydantic models and SPARQL queries) are generated from model definitions using the command line tool `wisskas`.
 
@@ -49,9 +52,15 @@ deploys a [fully functioning REST interface with FastAPI documentation](https://
 
 ![Backend with FastAPI documentation](./backend.png)
 
+### Consuming application
+
+Calls to the REST API are translated into SPARQL queries, their results reassembled into hierarchical models before being serialized. To reduce query load on the triple store, it can be advisable to add caching between the REST API and the consuming applications. In the case of modern web frameworks such as Next, caching can be enabled easily on both the server side as well as on the client, as is the case for the search frontend of the RELEVEN project:
+
+<https://releven.acdh-ch-dev.oeaw.ac.at/en/search>
+
 ## Acknowledgments
 
-rdfproxy was developed for the ERC project [RELEVEN](https://releven.univie.ac.at/) at the Department of History at the University of Vienna and the [Austrian Centre for Digital Humanities](https://acdh.oeaw.ac.at/) at the Austrian Academy of Sciences.
+`rdfproxy`, `wisskas` and the STAR model were developed as part of the ERC project [RELEVEN](https://releven.univie.ac.at/) at the Department of History at the University of Vienna and the [Austrian Centre for Digital Humanities](https://acdh.oeaw.ac.at/) at the Austrian Academy of Sciences.
 
 Poster/demo authors:
 

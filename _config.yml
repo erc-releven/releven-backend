@@ -1,3 +1,4 @@
 theme: jekyll-theme-minimal
 title: rdfproxy demo
 description: "`rdfproxy` for the RELEVEN project: a toolchain demo"
+markdown: kramdown

@@ -9,7 +9,7 @@ We address this problem with [`rdfproxy`](https://github.com/acdh-oeaw/rdfproxy)
 
 Our particular case study is the ERC project [RELEVEN](https://releven.univie.ac.at/): the aim of RELEVEN is to cast a clearer light on the events of the "short eleventh century" (c. 1030–1095). The key to achieving this is to find a way to link and connect large amounts of disparate sorts of data about the eleventh century that allows us to incorporate and model different, and even conflicting, perspectives about what the data tell us. The RELEVEN project implements a heavily reified CIDOC-CRM-based knowledge graph to represent historical claims with full contextual provenance.
 
-![The STAR ('STructured Assertion Record') model](./STAR2_baseassertion.png)
+![The STAR ('STructured Assertion Record') model](./star.png)
 
 ## Toolchain demo
 
@@ -21,59 +21,85 @@ The full STAR model is represented using the Pathbuilder XML format employed by 
 
 ```bash
 git clone https://github.com/erc-releven/releven-backend.git
-./generate-endpoints.sh
+uv run wisskas "releven.xml" endpoints \
+  -p crm "http://www.cidoc-crm.org/cidoc-crm/" \
+  -p lrmoo "http://iflastandards.info/ns/lrm/lrmoo/" \
+  -p rdfschema "http://www.w3.org/2000/01/rdf-schema#" \
+  -p star "https://r11.eu/ns/star/" \
+  -c -0 \
+  -li person person_display_name person_id_assignment.* person_id_assignment_identifier.person_id_assignment_identifier_plain person_possession_assertion#
 ```
 
 Example output:
 
 ```py
-from pydantic import AnyUrl, BaseModel, Field  # noqa: F401
-from rdfproxy import ConfigDict, SPARQLBinding
-from typing import Annotated
+from pydantic import AnyUrl, BaseModel, Field
+from rdfproxy import ConfigDict
 
+class IdentityInOtherServices(BaseModel):
+    person_id_assignment_identifier: AnyUrl
+    person_id_assignment_external_authority: AnyUrl
 
-
-class External_authority(BaseModel):
+class Person(BaseModel):
     model_config = ConfigDict(
-        title="",
-        enforce_grouping_consistency=False,
-        group_by="id",
+        group_by="person",
     )
-    id: Annotated[AnyUrl, SPARQLBinding("External_authority")]
+    # basic type validation
+    person: AnyUrl
 
-    external_authority_display_name: Annotated[str | None, SPARQLBinding("External_authority_external_authority_display_name")]
-    external_authority_has_member_assertion: Annotated[list[AnyUrl], SPARQLBinding("External_authority_external_authority_has_member_assertion")]
+    # advanced Pydantic validation constraints
+    person_display_name: str = Field(min_length=3)
+
+    # automatic list aggregation based on the binding of
+    # the 'group_by' variable specified above
+    person_id_assignment: list[IdentityInOtherServices]
+
+    # count of linked entities computed in query
+    person_possession_assertion: int
 ```
 
 ```sparql
-PREFIX aaao: <https://ontology.swissartresearch.net/aaao/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX lrmoo: <http://iflastandards.info/ns/lrm/lrmoo/>
 PREFIX rdfschema: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX star: <https://r11.eu/ns/star/>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX r11: <https://r11.eu/ns/spec/>
-PREFIX r11pros: <https://r11.eu/ns/prosopography/>
 
 
 SELECT
-  ?External_authority
-    ?External_authority_external_authority_display_name
-    ?External_authority_external_authority_has_member_assertion
+  ?person
+    ?person_display_name
+    ?person_id_assignment
+      ?person_id_assignment_identifier
+      ?person_id_assignment_external_authority
+    ?person_possession_assertion
 
 WHERE {
 
-  ?External_authority a lrmoo:F11_Corporate_Body .
+  ?person a crm:E21_Person .
 
   OPTIONAL {
-    ?External_authority rdfschema:label ?External_authority_external_authority_display_name .
+    ?person rdfschema:label ?person_display_name .
   }
 
   OPTIONAL {
-    ?External_authority ^crm:P140_assigned_attribute_to ?External_authority_external_authority_has_member_assertion .
-    ?External_authority_external_authority_has_member_assertion a star:E13_crm_P107 .
-  }
+    ?person ^crm:P140_assigned_attribute_to ?person_id_assignment .
+    ?person_id_assignment a crm:E15_Identifier_Assignment .
 
+    OPTIONAL {
+      ?person_id_assignment crm:P37_assigned ?person_id_assignment_identifier .
+      ?person_id_assignment_identifier a crm:E42_Identifier .
+    }
+
+    OPTIONAL {
+      ?person_id_assignment crm:P14_carried_out_by ?person_id_assignment_external_authority .
+      ?person_id_assignment_external_authority a lrmoo:F11_Corporate_Body .
+    }
+  }
+  OPTIONAL { SELECT (COUNT(?person_possession_assertion) AS ?person_possession_assertion_count) ?person WHERE {
+      ?person ^crm:P141_assigned ?Person_person_possession_assertion .
+      ?person_person_possession_assertion a star:E13_crm_P51 .
+  } GROUP BY ?Person }
+  BIND (COALESCE(?person_possession_assertion_count, 0) AS ?person_possession_assertion)
 }
 ```
 
@@ -104,5 +130,5 @@ Poster/demo authors:
 - Lukas Plank <lukas.plank@oeaw.ac.at>
 - Kevin Stadler <kevin.stadler@oeaw.ac.at>
 
-![ERC Logo](./LOGO_ERC-FLAG_EU-no text.png)
-![University of Vienna Logo](./Uni_Logo.png)
+![ERC logo](./LOGO_ERC-FLAG_EU-no text.png)
+![Austrian Centre for Digital Humanities logo](./Acdh-ch-logo-with-text.png)

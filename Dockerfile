@@ -15,6 +15,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
     && apt update && apt -y full-upgrade && apt install -y git && pip3 install uv && apt clean \
     && uv sync && ./generate-endpoints.sh \
+    && uv run pytest test.py \
     && git config --system --add safe.directory /app \
     && cd /app && git reset --hard
 

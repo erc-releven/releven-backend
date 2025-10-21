@@ -13,5 +13,5 @@ dependencies = [
 ]
 
 [tool.uv.sources]
-wisskas = { git = "https://github.com/acdh-oeaw/wisskas", branch = "kstl/ignore-grouping-consistency" }
+wisskas = { git = "https://github.com/acdh-oeaw/wisskas" }
 

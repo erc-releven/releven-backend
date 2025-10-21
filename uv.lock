@@ -672,7 +672,7 @@ requires-dist = [
     { name = "gitpython", specifier = ">=3.1.43,<4" },
     { name = "pytest", specifier = ">=8.4.2" },
     { name = "rdfproxy", specifier = ">=0.9.0" },
-    { name = "wisskas", git = "https://github.com/acdh-oeaw/wisskas?branch=kstl%2Fignore-grouping-consistency" },
+    { name = "wisskas", git = "https://github.com/acdh-oeaw/wisskas" },
 ]
 
 [[package]]
@@ -1020,7 +1020,7 @@ wheels = [
 [[package]]
 name = "wisskas"
 version = "0.1.0"
-source = { git = "https://github.com/acdh-oeaw/wisskas?branch=kstl%2Fignore-grouping-consistency#c004f6e3d73d31d348a81d423f17aff6f2b2f6f4" }
+source = { git = "https://github.com/acdh-oeaw/wisskas#8570eedcb79688a75e09268833c2145c57ab046f" }
 dependencies = [
     { name = "jinja2" },
     { name = "lxml" },

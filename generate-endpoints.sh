@@ -16,6 +16,7 @@ uv run wisskas tmp.xml endpoints --git \
   -p r11 "https://r11.eu/ns/spec/" \
   -p r11pros "https://r11.eu/ns/prosopography/" \
   -c -0 \
+  -t 30 \
   -li author_group '*' \
   -li bibliography '*' \
   -li boulloterion '*' \

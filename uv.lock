@@ -642,16 +642,12 @@ wheels = [
 [[package]]
 name = "rdfproxy"
 version = "0.9.0"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/acdh-oeaw/rdfproxy.git?branch=kstl%2Fv0.9.0-with-httpx-kwargs#03808f9651a0e53fb2de14cd8c12c841102614e7" }
 dependencies = [
     { name = "httpx" },
     { name = "pandas" },
     { name = "pydantic" },
     { name = "rdflib" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/45/b8/260247151ad31de26be34c1357f09c4ff9362c403f6e5c8bbe77f6ad8101/rdfproxy-0.9.0.tar.gz", hash = "sha256:4adc7e6c5c656a477b00590c8b1b86a83f1bb6536b0e30b00a5369a828e72b47", size = 123321, upload-time = "2025-08-11T13:57:46.021Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/ef/d6/b3e5445a6832730490f13e5634d899e1ac6179d9c2fb08c6ecb7a22142d5/rdfproxy-0.9.0-py3-none-any.whl", hash = "sha256:11067e5e6e01fd49fb92b372b2bb57f2a60bc54babdda4cc665a10f64a2e3ed5", size = 39106, upload-time = "2025-08-11T13:57:44.594Z" },
 ]
 
 [[package]]
@@ -671,7 +667,7 @@ requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.4,<0.116" },
     { name = "gitpython", specifier = ">=3.1.43,<4" },
     { name = "pytest", specifier = ">=8.4.2" },
-    { name = "rdfproxy", specifier = ">=0.9.0" },
+    { name = "rdfproxy", git = "https://github.com/acdh-oeaw/rdfproxy.git?branch=kstl%2Fv0.9.0-with-httpx-kwargs" },
     { name = "wisskas", git = "https://github.com/acdh-oeaw/wisskas" },
 ]
 

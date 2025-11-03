@@ -1,0 +1,24 @@
+--- releven_places.rq	2025-11-03 13:02:48.886073331 +0100
++++ releven_places.rq.changed	2025-11-03 13:03:22.557829341 +0100
+@@ -16,11 +16,7 @@
+       ?Places_place_id_assignment_external_authority
+         ?Places_place_id_assignment_external_authority_external_authority_display_name
+         ?Places_place_id_assignment_external_authority_external_authority_has_member_assertion
+-    ?Places_place_name_of_place_assertion
+-    ?Places_place_part_of_place_assertion
+-    ?Places_place_type_of_place_assertion
+-    ?Places_place_succeeded_by_assertion
+-    ?Places_place_had_population_assertion
++    ?n_assertions
+ 
+ WHERE {
+ 
+@@ -83,5 +79,6 @@
+   } GROUP BY ?Places }
+   BIND (COALESCE(?Places_place_had_population_assertion_count, 0) AS ?Places_place_had_population_assertion)
+ 
++  BIND (?Places_place_name_of_place_assertion + ?Places_place_part_of_place_assertion + ?Places_place_type_of_place_assertion + ?Places_place_succeeded_by_assertion + ?Places_place_had_population_assertion AS ?n_assertions)
+ 
+-}
+\ No newline at end of file
++}

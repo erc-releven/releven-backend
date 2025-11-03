@@ -1,0 +1,29 @@
+--- releven_text.rq	2025-11-06 11:59:23.776268540 +0100
++++ releven_text.rq.changed	2025-11-06 12:04:35.496440086 +0100
+@@ -11,16 +11,7 @@
+ SELECT
+   ?Text
+     ?Text_written_text_display_name
+-    ?Text_written_text_title_assertion
+-    ?Text_written_text_creation
+-      ?Text_written_text_creation_written_text_creation_time_frame_assertion
+-      ?Text_written_text_creation_written_text_creation_author_assertion
+-      ?Text_written_text_creation_written_text_creation_place_assertion
+-      ?Text_written_text_creation_written_text_creation_copied_from_assertion
+-      ?Text_written_text_creation_written_text_creation_translated_from_assertion
+-    ?Text_written_text_published_as_assertion
+-    ?Text_written_text_written_in_assertion
+-    ?Text_written_text_version_of_assertion
++    ?n_assertions
+ 
+ WHERE {
+ 
+@@ -90,5 +81,6 @@
+   } GROUP BY ?Text }
+   BIND (COALESCE(?Text_written_text_version_of_assertion_count, 0) AS ?Text_written_text_version_of_assertion)
+ 
++  BIND (?Text_written_text_title_assertion + ?Text_written_text_creation_written_text_creation_time_frame_assertion + ?Text_written_text_creation_written_text_creation_author_assertion + ?Text_written_text_creation_written_text_creation_place_assertion + ?Text_written_text_creation_written_text_creation_copied_from_assertion + ?Text_written_text_creation_written_text_creation_translated_from_assertion + ?Text_written_text_published_as_assertion + ?Text_written_text_written_in_assertion + ?Text_written_text_version_of_assertion as ?n_assertions)
+ 
+-}
+\ No newline at end of file
++}

@@ -29,13 +29,14 @@ uv run wisskas tmp.xml endpoints --git \
   -li passage '*' \
   -li person/people\|person_display_name 'person_display_name' 'person_id_assignment.*' 'person_id_assignment.person_id_assignment_identifier.*' 'person_id_assignment.person_id_assignment_by.external_authority_display_name' 'person_name_of_person_assertion.person_name_of_person_is' \
   -ii person/people/detail id 'person_display_name' '*' 'person_gender_assignment.person_gender_assignment_gender_assertion.person_gender_assignment_gender_is.gender_display_name' 'person_id_assignment.*' 'person_id_assignment.person_id_assignment_identifier.*' 'person_name_of_person_assertion.*' 'person_name_of_person_assertion.person_name_of_person_by.person_display_name' 'person_name_of_person_assertion.person_name_of_person_src.*' \
-  -li place '*' \
+  -li place/places\|place_display_name 'place_display_name' 'place_id_assignment.*' 'place_id_assignment.place_id_assignment_identifier.*' 'place_id_assignment.place_id_assignment_by.*' 'place_name_of_place_assertion#' 'place_part_of_place_assertion#' 'place_type_of_place_assertion#' 'place_succeeded_by_assertion#' 'place_had_population_assertion#' \
+  -ii place/places/detail id '*' 'place_id_assignment.*' 'place_id_assignment.place_id_assignment_by.*' \
   -li publication '*' \
   -li religious_affiliation '*' \
   -li seal '*' \
   -li seal_collection '*' \
   -li social_relationship '*' \
-  -li written_text/text\|written_text_display_name '*' 'written_text_creation.*' \
+  -li written_text/text\|written_text_display_name 'written_text_display_name' 'written_text_title_assertion#' 'written_text_creation.written_text_creation_time_frame_assertion#' 'written_text_creation.written_text_creation_author_assertion#' 'written_text_creation.written_text_creation_place_assertion#' 'written_text_creation.written_text_creation_copied_from_assertion#' 'written_text_creation.written_text_creation_translated_from_assertion#' 'written_text_published_as_assertion#' 'written_text_written_in_assertion#' 'written_text_version_of_assertion#' \
   -ii written_text/text/detail id '*' 'written_text_creation.*' 'written_text_creation.written_text_creation_author_assertion.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_is.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_by.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_src.*' \
   -o releven || exit 1
 

@@ -6,7 +6,7 @@
 sed -e 's/id>[gp]_/id>/g' "pathbuilder_wisski.xml" > tmp.xml
 
 uv run wisskas tmp.xml endpoints --git \
-  -a "https://graphdb.r11.eu/repositories/RELEVEN_2025" \
+  -a "https://releven-graphdb.acdh-dev.oeaw.ac.at/repositories/owl-max" \
   -p aaao "https://ontology.swissartresearch.net/aaao/" \
   -p crm "http://www.cidoc-crm.org/cidoc-crm/" \
   -p lrmoo "http://iflastandards.info/ns/lrm/lrmoo/" \
@@ -18,15 +18,15 @@ uv run wisskas tmp.xml endpoints --git \
   -c -0 \
   -t 30 \
   -ll \
-  -li author_group '*' \
+  -li author_group '%%' \
   -li bibliography '*' \
   -li boulloterion '*' \
-  -li ethnic_group '*' \
+  -li ethnic_group '%%' \
   -li external_authority '*' \
   -li gender '*' \
-  -li language '*' \
-  -li legal_status '*' \
-  -li passage '*' \
+  -li language '%%' \
+  -li legal_status '%%' \
+  -li passage '%%' \
   \
   \
   -li person/people\|person_display_name 'person_display_name' 'person_id_assignment.*' 'person_id_assignment.person_id_assignment_identifier.*' 'person_id_assignment.person_id_assignment_by.external_authority_display_name' 'person_name_of_person_assertion.person_name_of_person_is' \
@@ -35,7 +35,7 @@ uv run wisskas tmp.xml endpoints --git \
   -ii person/people/life_events id person_gender_assignment.*.*.* person_birth_of_person.*.* person_death_of_person.*.* person_language_skill.*.* person_religious_affiliation.*.* \
   -ii person/people/cursus id person_legal_role.*.* person_social_role.*.* \
   \
-  -li social_relationship '*' \
+  -li social_relationship '%%' \
   \
   -li geopolitical_event '*' \
   -li journey '*' \
@@ -47,7 +47,7 @@ uv run wisskas tmp.xml endpoints --git \
   -li place/places\|place_display_name 'place_display_name' 'place_id_assignment.*' 'place_id_assignment.place_id_assignment_identifier.*' 'place_id_assignment.place_id_assignment_by.*' 'place_name_of_place_assertion#' 'place_part_of_place_assertion#' 'place_type_of_place_assertion#' 'place_succeeded_by_assertion#' 'place_had_population_assertion#' \
   -ii place/places/detail id '*' 'place_id_assignment.*' 'place_id_assignment.place_id_assignment_by.*' \
   \
-  -li religious_affiliation '*' \
+  -li religious_affiliation '%%' \
   -li seal '*' \
   -li seal_collection '*' \
   \

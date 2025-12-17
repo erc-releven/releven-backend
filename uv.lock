@@ -550,7 +550,7 @@ requires-dist = [
     { name = "gitpython", specifier = ">=3.1.43,<4" },
     { name = "pytest", specifier = ">=8.4.2" },
     { name = "rdfproxy", git = "https://github.com/acdh-oeaw/rdfproxy.git?branch=kstl%2Fv0.9.0-with-httpx-kwargs" },
-    { name = "wisskas", git = "https://github.com/acdh-oeaw/wisskas" },
+    { name = "wisskas", git = "https://github.com/acdh-oeaw/wisskas?branch=dev" },
 ]
 
 [[package]]
@@ -815,7 +815,7 @@ wheels = [
 [[package]]
 name = "wisskas"
 version = "0.1.0"
-source = { git = "https://github.com/acdh-oeaw/wisskas#d4e3829370a41c5d7053a19033fbdf6dde4d414f" }
+source = { git = "https://github.com/acdh-oeaw/wisskas?branch=dev#91df427ae807ff65b542e62b387f509d3a771d50" }
 dependencies = [
     { name = "jinja2" },
     { name = "lxml" },

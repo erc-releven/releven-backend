@@ -13,6 +13,5 @@ dependencies = [
 ]
 
 [tool.uv.sources]
-wisskas = { git = "https://github.com/acdh-oeaw/wisskas" }
+wisskas = { git = "https://github.com/acdh-oeaw/wisskas", branch = "dev" }
 rdfproxy = { git = "https://github.com/acdh-oeaw/rdfproxy.git", branch = "kstl/v0.9.0-with-httpx-kwargs" }
-

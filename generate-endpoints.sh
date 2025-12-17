@@ -3,20 +3,21 @@
 # uv sync --upgrade
 
 # remove semantic g_/p_ prefixes for nicer automatically generate class and endpoint names
-sed -e 's/id>[gp]_/id>/g' "pathbuilder_wisski.xml" > tmp.xml
+sed -e 's/id>[gp]_/id>/g' "pathbuilder_expanded_20251216.xml" > tmp.xml
 
 uv run wisskas tmp.xml endpoints --git \
   -a "https://releven-graphdb.acdh-dev.oeaw.ac.at/repositories/owl-max" \
   -p aaao "https://ontology.swissartresearch.net/aaao/" \
   -p crm "http://www.cidoc-crm.org/cidoc-crm/" \
   -p lrmoo "http://iflastandards.info/ns/lrm/lrmoo/" \
+  -p owl "http://www.w3.org/2002/07/owl#" \
   -p rdfschema "http://www.w3.org/2000/01/rdf-schema#" \
   -p star "https://r11.eu/ns/star/" \
   -p skos "http://www.w3.org/2004/02/skos/core#" \
   -p r11 "https://r11.eu/ns/spec/" \
   -p r11pros "https://r11.eu/ns/prosopography/" \
   -c -0 \
-  -t 30 \
+  -t 60 \
   -ll \
   -li author_group '%%' \
   -li bibliography '*' \
@@ -37,7 +38,7 @@ uv run wisskas tmp.xml endpoints --git \
   \
   -li social_relationship '%%' \
   \
-  -li geopolitical_event '*' \
+  -li geopolitical_event\|geopolitical_event_display_name '*' \
   -li journey '*' \
   \
   -li publication '*' \

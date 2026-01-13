@@ -8,6 +8,7 @@ dependencies = [
   "fastapi[standard]>=0.115.4,<0.116",
   "gitpython>=3.1.43,<4",
   "pytest>=8.4.2",
+  "rdflib",
   "rdfproxy>=0.9.0",
   "wisskas>=0.1.0",
 ]
@@ -15,3 +16,4 @@ dependencies = [
 [tool.uv.sources]
 wisskas = { git = "https://github.com/acdh-oeaw/wisskas", branch = "dev" }
 rdfproxy = { git = "https://github.com/acdh-oeaw/rdfproxy.git", branch = "kstl/v0.9.0-with-httpx-kwargs" }
+rdflib = { git = "https://github.com/rafguns/rdflib.git", branch = "issue3361" }

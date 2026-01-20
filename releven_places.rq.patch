@@ -1,0 +1,44 @@
+--- releven_places.rq	2026-01-20 09:47:07.535122621 +0100
++++ releven_places.rq.changed	2026-01-20 09:44:20.557643846 +0100
+@@ -20,16 +20,7 @@
+         ?Pea_external_authority_display_name
+         ?Pea_external_authority_has_member_assertion
+         ?Pea_external_authority_corresponds_to_assertion
+-    ?P_place_corresponds_to_assertion
+-    ?P_place_name_of_place_assertion
+-    ?P_place_part_of_place_assertion
+-    ?P_place_type_of_place_assertion
+-    ?P_place_spatiotemporal_existence
+-      ?Ppse_place_spatiotemporal_existence_time_frame_assertion
+-      ?Ppse_place_spatiotemporal_existence_location_assertion
+-    ?P_place_succeeded_by_assertion
+-    ?P_place_had_population_assertion
+-    ?P_place_same_as_place_assertion
++    ?n_assertions
+ 
+ WHERE {
+ 
+@@ -127,6 +118,7 @@
+     ?P_0_place_spatiotemporal_existence a star:E13_crm_P196 ;
+                                         crm:P141_assigned ?P_place_spatiotemporal_existence .
+     ?P_place_spatiotemporal_existence a crm:E92_Spacetime_Volume .
++  }
+ 
+     OPTIONAL { SELECT (COUNT(?Ppse_place_spatiotemporal_existence_time_frame_assertion) AS ?Ppse_place_spatiotemporal_existence_time_frame_assertion_count) ?P_place_spatiotemporal_existence WHERE {  
+         ?P_place_spatiotemporal_existence ^crm:P140_assigned_attribute_to ?Ppse_place_spatiotemporal_existence_time_frame_assertion .
+@@ -142,7 +134,6 @@
+     } GROUP BY ?P_place_spatiotemporal_existence }
+     BIND (COALESCE(?Ppse_place_spatiotemporal_existence_location_assertion_count, 0) AS ?Ppse_place_spatiotemporal_existence_location_assertion)
+ 
+-  }
+   OPTIONAL { SELECT (COUNT(?P_place_succeeded_by_assertion) AS ?P_place_succeeded_by_assertion_count) ?Places WHERE {  
+       ?Places ^crm:P140_assigned_attribute_to ?P_place_succeeded_by_assertion .
+       ?P_place_succeeded_by_assertion a star:E13_spec_L3 .
+@@ -165,4 +156,5 @@
+   BIND (COALESCE(?P_place_same_as_place_assertion_count, 0) AS ?P_place_same_as_place_assertion)
+ 
+ 
+-}
+\ No newline at end of file
++  BIND(?P_place_corresponds_to_assertion + ?P_place_name_of_place_assertion + ?P_place_part_of_place_assertion + ?P_place_type_of_place_assertion + ?Ppse_place_spatiotemporal_existence_time_frame_assertion + ?Ppse_place_spatiotemporal_existence_location_assertion + ?P_place_succeeded_by_assertion + ?P_place_had_population_assertion + ?P_place_same_as_place_assertion AS ?n_assertions)
++}

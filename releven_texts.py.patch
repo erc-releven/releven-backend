@@ -1,0 +1,34 @@
+--- releven_texts.py	2026-01-20 10:12:12.465337400 +0100
++++ releven_texts.py.changed	2026-01-20 10:14:39.761559799 +0100
+@@ -4,19 +4,6 @@
+ 
+ 
+ 
+-class Creation(BaseModel):
+-    model_config = ConfigDict(
+-        title="",
+-    )
+-
+-    written_text_creation_time_frame_assertion: Annotated[int | None, SPARQLBinding("Twtc_written_text_creation_time_frame_assertion")]
+-    written_text_creation_author_assertion: Annotated[int | None, SPARQLBinding("Twtc_written_text_creation_author_assertion")]
+-    written_text_creation_place_assertion: Annotated[int | None, SPARQLBinding("Twtc_written_text_creation_place_assertion")]
+-    written_text_creation_copied_from_assertion: Annotated[int | None, SPARQLBinding("Twtc_written_text_creation_copied_from_assertion")]
+-    written_text_creation_translated_from_assertion: Annotated[int | None, SPARQLBinding("Twtc_written_text_creation_translated_from_assertion")]
+-
+-
+-
+ class Texts(BaseModel):
+     model_config = ConfigDict(
+         title="",
+@@ -24,10 +11,4 @@
+     id: Annotated[AnyUrl, SPARQLBinding("Texts")]
+ 
+     written_text_display_name: Annotated[str | None, SPARQLBinding("T_written_text_display_name")]
+-    written_text_title_assertion: Annotated[int | None, SPARQLBinding("T_written_text_title_assertion")]
+-    written_text_creation: Annotated[Creation | None, SPARQLBinding("T_written_text_creation")] = None
+-    written_text_published_as_assertion: Annotated[int | None, SPARQLBinding("T_written_text_published_as_assertion")]
+-    written_text_written_in_assertion: Annotated[int | None, SPARQLBinding("T_written_text_written_in_assertion")]
+-    written_text_version_of_assertion: Annotated[int | None, SPARQLBinding("T_written_text_version_of_assertion")]
+-    written_text_used_as_source_assertion: Annotated[int | None, SPARQLBinding("T_written_text_used_as_source_assertion")]
+-    written_text_same_as_text_assertion: Annotated[int | None, SPARQLBinding("T_written_text_same_as_text_assertion")]
++    n_assertions: int

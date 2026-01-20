@@ -6,6 +6,7 @@
 sed -e 's/id>[gp]_/id>/g' "pathbuilder_expanded_20251216.xml" > tmp.xml
 
 uv run wisskas tmp.xml endpoints --git \
+  -f \
   -a "https://releven-graphdb.acdh-dev.oeaw.ac.at/repositories/owl-max" \
   -p aaao "https://ontology.swissartresearch.net/aaao/" \
   -p crm "http://www.cidoc-crm.org/cidoc-crm/" \
@@ -30,11 +31,11 @@ uv run wisskas tmp.xml endpoints --git \
   -li passage '%%' \
   \
   \
-  -li person/people\|person_display_name 'person_display_name' 'person_id_assignment.*' 'person_id_assignment.person_id_assignment_identifier.*' 'person_id_assignment.person_id_assignment_by.external_authority_display_name' 'person_name_of_person_assertion.person_name_of_person_is' \
-  -ii person/people/detail id person_display_name person_id_assignment.*.* \
-  -ii person/people/identity id person_name_of_person_assertion.*.* person_ethnic_group_membership_assertion.*.* person_population_membership_assertion.*.* person_part_of_manifest_group_assertion.*.* person_possession_assertion.*.* \
-  -ii person/people/life_events id person_gender_assignment.*.*.* person_birth_of_person.*.* person_death_of_person.*.* person_language_skill.*.* person_religious_affiliation.*.* \
-  -ii person/people/cursus id person_legal_role.*.* person_social_role.*.* \
+  -li person/people\|person_display_name 'person_display_name' 'person_id_assignment.*' 'person_id_assignment.person_id_assignment_identifier.*' 'person_id_assignment.person_id_assignment_by.external_authority_display_name' 'person_name_of_person_assertion.person_name_of_person_is' 'person_gender_assignment#' 'person_ethnic_group_membership_assertion#' 'person_population_membership_assertion#' 'part_of_manifest_group_assertion#' 'person_social_relationship#' 'person_language_skill#' 'person_social_role#' 'person_legal_role#' 'person_religious_affiliation#' 'person_possession_assertion#' 'person_same_as_person_assertion#' \
+  -ii person/people/detail id 'person_display_name' 'person_id_assignment.*.*' \
+  -ii person/people/identity id 'person_name_of_person_assertion.*.*' 'person_ethnic_group_membership_assertion.*.*' 'person_population_membership_assertion.*.*' 'person_part_of_manifest_group_assertion.*.*' 'person_possession_assertion.*.*' \
+  -ii person/people/life_events id 'person_gender_assignment.*.*.*' 'person_birth_of_person.*.*' 'person_death_of_person.*.*' 'person_language_skill.*.*' 'person_religious_affiliation.*.*' \
+  -ii person/people/cursus id 'person_legal_role.*.*' 'person_social_role.*.*' \
   \
   -li social_relationship '%%' \
   \
@@ -45,15 +46,15 @@ uv run wisskas tmp.xml endpoints --git \
   -li manuscript '*' \
   \
   \
-  -li place/places\|place_display_name 'place_display_name' 'place_id_assignment.*' 'place_id_assignment.place_id_assignment_identifier.*' 'place_id_assignment.place_id_assignment_by.*' 'place_name_of_place_assertion#' 'place_part_of_place_assertion#' 'place_type_of_place_assertion#' 'place_succeeded_by_assertion#' 'place_had_population_assertion#' \
+  -li place/places\|place_display_name 'place_display_name' 'place_id_assignment.*' 'place_id_assignment.place_id_assignment_identifier.place_id_assignment_identifier_plain' 'place_id_assignment.place_id_assignment_by.*' 'place_corresponds_to_assertion#' 'place_name_of_place_assertion#' 'place_part_of_place_assertion#' 'place_type_of_place_assertion#' 'place_spatiotemporal_existence.place_spatiotemporal_existence_time_frame_assertion#' 'place_spatiotemporal_existence.place_spatiotemporal_existence_location_assertion#' 'place_succeeded_by_assertion#' 'place_had_population_assertion#' 'place_same_as_place_assertion#' \
   -ii place/places/detail id '*' 'place_id_assignment.*' 'place_id_assignment.place_id_assignment_by.*' \
   \
   -li religious_affiliation '%%' \
   -li seal '*' \
   -li seal_collection '*' \
   \
-  -li written_text/text\|written_text_display_name 'written_text_display_name' 'written_text_title_assertion#' 'written_text_creation.written_text_creation_time_frame_assertion#' 'written_text_creation.written_text_creation_author_assertion#' 'written_text_creation.written_text_creation_place_assertion#' 'written_text_creation.written_text_creation_copied_from_assertion#' 'written_text_creation.written_text_creation_translated_from_assertion#' 'written_text_published_as_assertion#' 'written_text_written_in_assertion#' 'written_text_version_of_assertion#' \
-  -ii written_text/text/detail id '*' 'written_text_creation.*' 'written_text_creation.written_text_creation_author_assertion.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_is.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_by.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_src.*' \
+  -li written_text/texts\|written_text_display_name 'written_text_display_name' 'written_text_title_assertion#' 'written_text_creation.written_text_creation_time_frame_assertion#' 'written_text_creation.written_text_creation_author_assertion#' 'written_text_creation.written_text_creation_place_assertion#' 'written_text_creation.written_text_creation_copied_from_assertion#' 'written_text_creation.written_text_creation_translated_from_assertion#' 'written_text_published_as_assertion#' 'written_text_written_in_assertion#' 'written_text_version_of_assertion#' 'written_text_used_as_source_assertion#' 'written_text_same_as_text_assertion#' \
+  -ii written_text/texts/detail id '*' 'written_text_creation.*' 'written_text_creation.written_text_creation_author_assertion.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_is.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_by.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_src.*' \
   -o releven || exit 1
 
 for PATCHFILE in `ls *.patch`; do

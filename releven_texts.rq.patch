@@ -1,0 +1,47 @@
+--- releven_texts.rq	2026-01-22 13:36:16.093026201 +0100
++++ releven_texts.rq.changed	2026-01-22 13:44:17.738343798 +0100
+@@ -12,18 +12,7 @@
+ SELECT
+   ?Texts
+     ?T_written_text_display_name
+-    ?T_written_text_title_assertion
+-    ?T_written_text_creation
+-      ?Twtc_written_text_creation_time_frame_assertion
+-      ?Twtc_written_text_creation_author_assertion
+-      ?Twtc_written_text_creation_place_assertion
+-      ?Twtc_written_text_creation_copied_from_assertion
+-      ?Twtc_written_text_creation_translated_from_assertion
+-    ?T_written_text_published_as_assertion
+-    ?T_written_text_written_in_assertion
+-    ?T_written_text_version_of_assertion
+-    ?T_written_text_used_as_source_assertion
+-    ?T_written_text_same_as_text_assertion
++    ?n_assertions
+ 
+ WHERE {
+ 
+@@ -47,6 +36,7 @@
+     ?T_0_written_text_creation a star:E13_lrmoo_R17 ;
+                                crm:P140_assigned_attribute_to ?T_written_text_creation .
+     ?T_written_text_creation a lrmoo:F28_Expression_Creation .
++  }
+ 
+     OPTIONAL { SELECT (COUNT(?Twtc_written_text_creation_time_frame_assertion) AS ?Twtc_written_text_creation_time_frame_assertion_count) ?T_written_text_creation WHERE {  
+         ?T_written_text_creation ^crm:P140_assigned_attribute_to ?Twtc_written_text_creation_time_frame_assertion .
+@@ -83,7 +73,6 @@
+     } GROUP BY ?T_written_text_creation }
+     BIND (COALESCE(?Twtc_written_text_creation_translated_from_assertion_count, 0) AS ?Twtc_written_text_creation_translated_from_assertion)
+ 
+-  }
+   OPTIONAL { SELECT (COUNT(?T_written_text_published_as_assertion) AS ?T_written_text_published_as_assertion_count) ?Texts WHERE {  
+       ?Texts ^crm:P141_assigned ?T_written_text_published_as_assertion .
+       ?T_written_text_published_as_assertion a star:E13_crm_P165 .
+@@ -119,5 +108,6 @@
+   } GROUP BY ?Texts }
+   BIND (COALESCE(?T_written_text_same_as_text_assertion_count, 0) AS ?T_written_text_same_as_text_assertion)
+ 
++  BIND (?T_written_text_title_assertion + ?Twtc_written_text_creation_time_frame_assertion + ?Twtc_written_text_creation_author_assertion + ?Twtc_written_text_creation_place_assertion + ?Twtc_written_text_creation_copied_from_assertion + ?Twtc_written_text_creation_translated_from_assertion + ?T_written_text_published_as_assertion + ?T_written_text_written_in_assertion + ?T_written_text_version_of_assertion + ?T_written_text_used_as_source_assertion + ?T_written_text_same_as_text_assertion as ?n_assertions)
+ 
+-}
+\ No newline at end of file
++}

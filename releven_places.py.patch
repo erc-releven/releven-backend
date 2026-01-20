@@ -1,0 +1,41 @@
+--- releven_places.py	2026-01-22 16:54:15.462901802 +0100
++++ releven_places.py.changed	2026-01-22 16:54:46.713029334 +0100
+@@ -9,7 +9,7 @@
+         title="",
+     )
+ 
+-    place_id_assignment_identifier_plain: Annotated[str | None, SPARQLBinding("Ppiai_place_id_assignment_identifier_plain")]
++    place_id_assignment_identifier_plain: Annotated[int | str | None, SPARQLBinding("Ppiai_place_id_assignment_identifier_plain")]
+ 
+ 
+ 
+@@ -37,16 +37,6 @@
+ 
+ 
+ 
+-class SpatiotemporalExistence(BaseModel):
+-    model_config = ConfigDict(
+-        title="",
+-    )
+-
+-    place_spatiotemporal_existence_time_frame_assertion: Annotated[int | None, SPARQLBinding("Ppse_place_spatiotemporal_existence_time_frame_assertion")]
+-    place_spatiotemporal_existence_location_assertion: Annotated[int | None, SPARQLBinding("Ppse_place_spatiotemporal_existence_location_assertion")]
+-
+-
+-
+ class Places(BaseModel):
+     model_config = ConfigDict(
+         title="",
+@@ -57,11 +47,4 @@
+ 
+     place_display_name: Annotated[str | None, SPARQLBinding("P_place_display_name")]
+     place_id_assignment: Annotated[list[IdentityInOtherServices], SPARQLBinding("P_place_id_assignment")]
+-    place_corresponds_to_assertion: Annotated[int, SPARQLBinding("P_place_corresponds_to_assertion")]
+-    place_name_of_place_assertion: Annotated[int, SPARQLBinding("P_place_name_of_place_assertion")]
+-    place_part_of_place_assertion: Annotated[int, SPARQLBinding("P_place_part_of_place_assertion")]
+-    place_type_of_place_assertion: Annotated[int, SPARQLBinding("P_place_type_of_place_assertion")]
+-    place_spatiotemporal_existence: Annotated[SpatiotemporalExistence | None, SPARQLBinding("P_place_spatiotemporal_existence")] = None
+-    place_succeeded_by_assertion: Annotated[int, SPARQLBinding("P_place_succeeded_by_assertion")]
+-    place_had_population_assertion: Annotated[int, SPARQLBinding("P_place_had_population_assertion")]
+-    place_same_as_place_assertion: Annotated[int, SPARQLBinding("P_place_same_as_place_assertion")]
++    n_assertions: int

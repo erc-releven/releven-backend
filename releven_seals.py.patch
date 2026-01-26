@@ -1,0 +1,27 @@
+--- releven_seals.py	2026-01-26 13:37:31.100749025 +0100
++++ releven_seals.py.changed	2026-01-26 13:37:49.900857423 +0100
+@@ -4,23 +4,12 @@
+ 
+ 
+ 
+-class LocativeStatus(BaseModel):
+-    model_config = ConfigDict(
+-        title="",
+-    )
+-
+-    seal_locative_status_location_assertion: Annotated[int | None, SPARQLBinding("Ssls_seal_locative_status_location_assertion")]
+-    seal_locative_status_time_frame_assertion: Annotated[int | None, SPARQLBinding("Ssls_seal_locative_status_time_frame_assertion")]
+-
+-
+-
+ class Seals(BaseModel):
+     model_config = ConfigDict(
+         title="",
+         enforce_grouping_consistency=False,
+-        group_by="id",
+     )
+     id: Annotated[AnyUrl, SPARQLBinding("Seals")]
+ 
+     seal_seal_id: Annotated[str | None, SPARQLBinding("S_seal_seal_id")]
+-    seal_locative_status: Annotated[list[LocativeStatus], SPARQLBinding("S_seal_locative_status")]
++    n_assertions: int

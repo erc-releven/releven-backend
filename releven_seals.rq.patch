@@ -1,0 +1,34 @@
+--- releven_seals.rq	2026-01-26 13:38:44.001217210 +0100
++++ releven_seals.rq.changed	2026-01-26 13:38:51.561256426 +0100
+@@ -12,9 +12,7 @@
+ SELECT
+   ?Seals
+     ?S_seal_seal_id
+-    ?S_seal_locative_status
+-      ?Ssls_seal_locative_status_location_assertion
+-      ?Ssls_seal_locative_status_time_frame_assertion
++    ?n_assertions
+ 
+ WHERE {
+ 
+@@ -37,15 +35,16 @@
+         ?Ssls_seal_locative_status_location_assertion a star:E13_aaao_ZP77 .
+ 
+     } GROUP BY ?S_seal_locative_status }
+-    BIND (COALESCE(?Ssls_seal_locative_status_location_assertion_count, 0) AS ?Ssls_seal_locative_status_location_assertion)
+ 
+     OPTIONAL { SELECT (COUNT(?Ssls_seal_locative_status_time_frame_assertion) AS ?Ssls_seal_locative_status_time_frame_assertion_count) ?S_seal_locative_status WHERE {  
+         ?S_seal_locative_status ^crm:P140_assigned_attribute_to ?Ssls_seal_locative_status_time_frame_assertion .
+         ?Ssls_seal_locative_status_time_frame_assertion a star:E13_crm_P4 .
+ 
+     } GROUP BY ?S_seal_locative_status }
+-    BIND (COALESCE(?Ssls_seal_locative_status_time_frame_assertion_count, 0) AS ?Ssls_seal_locative_status_time_frame_assertion)
+ 
+   }
++  BIND (COALESCE(?Ssls_seal_locative_status_location_assertion_count, 0) AS ?Ssls_seal_locative_status_location_assertion)
++  BIND (COALESCE(?Ssls_seal_locative_status_time_frame_assertion_count, 0) AS ?Ssls_seal_locative_status_time_frame_assertion)
+ 
+-}
+\ No newline at end of file
++  BIND (?Ssls_seal_locative_status_location_assertion + ?Ssls_seal_locative_status_time_frame_assertion AS ?n_assertions)
++}

@@ -50,7 +50,8 @@ uv run wisskas tmp.xml endpoints --git \
   -ii place/places/detail id '*' 'place_id_assignment.*' 'place_id_assignment.place_id_assignment_by.*' \
   \
   -li religious_affiliation '%%' \
-  -li seal '*' \
+  -li seal/seals 'seal_seal_id' 'seal_locative_status.seal_locative_status_location_assertion#' 'seal_locative_status.seal_locative_status_time_frame_assertion#' \
+  -ii seal/seals/detail id '%%' \
   -li seal_collection '*' \
   \
   -li written_text/texts\|written_text_display_name 'written_text_display_name' 'written_text_title_assertion#' 'written_text_creation.written_text_creation_time_frame_assertion#' 'written_text_creation.written_text_creation_author_assertion#' 'written_text_creation.written_text_creation_place_assertion#' 'written_text_creation.written_text_creation_copied_from_assertion#' 'written_text_creation.written_text_creation_translated_from_assertion#' 'written_text_published_as_assertion#' 'written_text_written_in_assertion#' 'written_text_version_of_assertion#' 'written_text_used_as_source_assertion#' 'written_text_same_as_text_assertion#' \

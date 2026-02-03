@@ -21,6 +21,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 USER app
 
-CMD ["uv", "run", "fastapi", "run", "releven.py", "--port", "5000", "--proxy-headers"]
+# call uvicorn to be able to use ASGICacheMiddleware
+CMD ["uv", "run", "uvicorn", "run", "releven:app", "--port", "5000", "--proxy-headers"]
 
 EXPOSE 5000

@@ -19,6 +19,7 @@ uv run wisskas tmp.xml endpoints --git \
   -p r11pros "https://r11.eu/ns/prosopography/" \
   -c -0 \
   -t 60 \
+  --cache 86400 \
   -r 10 \
   -ll \
   -li author_group '%%' \

@@ -54,7 +54,7 @@ uv run wisskas tmp.xml endpoints --git \
   \
   \
   -li person/people\|person_display_name 'person_display_name' 'person_id_assignment.*' \
-  -li person/people_assertions\|person_display_name 'person_display_name' 'person_name_of_person_assertion#' 'person_gender_assignment#' 'person_ethnic_group_membership_assertion#' 'person_population_membership_assertion#' 'part_of_manifest_group_assertion#' 'person_social_relationship#' 'person_language_skill#' 'person_social_role#' 'person_legal_role#' 'person_religious_affiliation#' 'person_possession_assertion#' 'person_same_as_person_assertion#' \
+  -li person/people_with_assertions\|person_display_name 'person_display_name' 'person_name_of_person_assertion#' 'person_gender_assignment#' 'person_ethnic_group_membership_assertion#' 'person_population_membership_assertion#' 'part_of_manifest_group_assertion#' 'person_social_relationship#' 'person_language_skill#' 'person_social_role#' 'person_legal_role#' 'person_religious_affiliation#' 'person_possession_assertion#' 'person_same_as_person_assertion#' \
   -ii person/people/detail id 'person_display_name' 'person_id_assignment.*.*' \
   -ii person/people/identity id 'person_name_of_person_assertion.*.*' 'person_ethnic_group_membership_assertion.*.*' 'person_population_membership_assertion.*.*' 'person_part_of_manifest_group_assertion.*.*' 'person_possession_assertion.*.*' \
   -ii person/people/life_events id 'person_gender_assignment.*.*.*' 'person_birth_of_person.*.*' 'person_death_of_person.*.*' 'person_language_skill.*.*' 'person_religious_affiliation.*.*' \
@@ -64,6 +64,7 @@ uv run wisskas tmp.xml endpoints --git \
   -li journey '*' \
   \
   -li place/places\|place_display_name 'place_display_name' 'place_id_assignment.*' 'place_id_assignment.place_id_assignment_identifier.place_id_assignment_identifier_plain' 'place_id_assignment.place_id_assignment_by.*' 'place_corresponds_to_assertion#' 'place_name_of_place_assertion#' 'place_part_of_place_assertion#' 'place_type_of_place_assertion#' 'place_spatiotemporal_existence.place_spatiotemporal_existence_time_frame_assertion#' 'place_spatiotemporal_existence.place_spatiotemporal_existence_location_assertion#' 'place_succeeded_by_assertion#' 'place_had_population_assertion#' 'place_same_as_place_assertion#' \
+  -li place/places_with_assertions\|place_display_name 'place_display_name' 'place_corresponds_to_assertion#' 'place_name_of_place_assertion#' 'place_part_of_place_assertion#' 'place_type_of_place_assertion#' 'place_spatiotemporal_existence.place_spatiotemporal_existence_time_frame_assertion#' 'place_spatiotemporal_existence.place_spatiotemporal_existence_location_assertion#' 'place_succeeded_by_assertion#' 'place_had_population_assertion#' 'place_same_as_place_assertion#' \
   -ii place/places/detail id '%%' \
   \
   -li seal/seals 'seal_seal_id' 'seal_locative_status.seal_locative_status_location_assertion#' 'seal_locative_status.seal_locative_status_time_frame_assertion#' \
@@ -71,6 +72,7 @@ uv run wisskas tmp.xml endpoints --git \
   -li seal_collection '*' \
   \
   -li written_text/texts\|written_text_display_name 'written_text_display_name' 'written_text_title_assertion#' 'written_text_creation.written_text_creation_time_frame_assertion#' 'written_text_creation.written_text_creation_author_assertion#' 'written_text_creation.written_text_creation_place_assertion#' 'written_text_creation.written_text_creation_copied_from_assertion#' 'written_text_creation.written_text_creation_translated_from_assertion#' 'written_text_published_as_assertion#' 'written_text_written_in_assertion#' 'written_text_version_of_assertion#' 'written_text_used_as_source_assertion#' 'written_text_same_as_text_assertion#' \
+  -li written_text/texts_with_assertions\|written_text_display_name 'written_text_display_name' 'written_text_title_assertion#' 'written_text_creation.written_text_creation_time_frame_assertion#' 'written_text_creation.written_text_creation_author_assertion#' 'written_text_creation.written_text_creation_place_assertion#' 'written_text_creation.written_text_creation_copied_from_assertion#' 'written_text_creation.written_text_creation_translated_from_assertion#' 'written_text_published_as_assertion#' 'written_text_written_in_assertion#' 'written_text_version_of_assertion#' 'written_text_used_as_source_assertion#' 'written_text_same_as_text_assertion#' \
   -ii written_text/texts/detail id '*' 'written_text_creation.*' 'written_text_creation.written_text_creation_author_assertion.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_is.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_by.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_src.*' \
   -o releven || exit 1
 

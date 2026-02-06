@@ -1,0 +1,7 @@
+--- releven_places_with_assertions.py	2026-02-06 14:05:27.549008434 +0100
++++ releven_places_with_assertions.py.changed	2026-02-06 14:05:45.640253157 +0100
+@@ -29,3 +29,4 @@
+     place_succeeded_by_assertion: Annotated[int | None, SPARQLBinding("Pwa_place_succeeded_by_assertion")]
+     place_had_population_assertion: Annotated[int | None, SPARQLBinding("Pwa_place_had_population_assertion")]
+     place_same_as_place_assertion: Annotated[int | None, SPARQLBinding("Pwa_place_same_as_place_assertion")]
++    n_assertions: int

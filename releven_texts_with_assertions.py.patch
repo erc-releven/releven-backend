@@ -1,0 +1,7 @@
+--- releven_texts_with_assertions.py	2026-02-06 14:08:41.611694124 +0100
++++ releven_texts_with_assertions.py.changed	2026-02-06 14:10:04.164802880 +0100
+@@ -31,3 +31,4 @@
+     written_text_version_of_assertion: Annotated[int | None, SPARQLBinding("Twa_written_text_version_of_assertion")]
+     written_text_used_as_source_assertion: Annotated[int | None, SPARQLBinding("Twa_written_text_used_as_source_assertion")]
+     written_text_same_as_text_assertion: Annotated[int | None, SPARQLBinding("Twa_written_text_same_as_text_assertion")]
++    n_assertions: int

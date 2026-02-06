@@ -1,7 +1,0 @@
---- releven_people_assertions.py	2026-02-06 11:55:12.161588289 +0100
-+++ releven_people_assertions.py.changed	2026-02-06 11:59:59.660247300 +0100
-@@ -22,3 +22,4 @@
-     person_religious_affiliation: Annotated[int | None, SPARQLBinding("Pa_person_religious_affiliation")]
-     person_possession_assertion: Annotated[int | None, SPARQLBinding("Pa_person_possession_assertion")]
-     person_same_as_person_assertion: Annotated[int | None, SPARQLBinding("Pa_person_same_as_person_assertion")]
-+    n_assertions: int

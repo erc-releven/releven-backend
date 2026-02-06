@@ -1,0 +1,37 @@
+--- releven_places_with_assertions.rq	2026-02-06 14:22:15.001576018 +0100
++++ releven_places_with_assertions.rq.changed	2026-02-06 14:22:27.498668841 +0100
+@@ -22,6 +22,7 @@
+     ?Pwa_place_succeeded_by_assertion
+     ?Pwa_place_had_population_assertion
+     ?Pwa_place_same_as_place_assertion
++    ?n_assertions
+ 
+ WHERE {
+ 
+@@ -66,6 +67,7 @@
+     ?Pwa_0_place_spatiotemporal_existence a star:E13_crm_P196 ;
+                                           crm:P141_assigned ?Pwa_place_spatiotemporal_existence .
+     ?Pwa_place_spatiotemporal_existence a crm:E92_Spacetime_Volume .
++  }
+ 
+     OPTIONAL { SELECT (COUNT(?Ppse_place_spatiotemporal_existence_time_frame_assertion) AS ?Ppse_place_spatiotemporal_existence_time_frame_assertion_count) ?Pwa_place_spatiotemporal_existence WHERE {  
+         ?Pwa_place_spatiotemporal_existence ^crm:P140_assigned_attribute_to ?Ppse_place_spatiotemporal_existence_time_frame_assertion .
+@@ -81,7 +83,6 @@
+     } GROUP BY ?Pwa_place_spatiotemporal_existence }
+     BIND (COALESCE(?Ppse_place_spatiotemporal_existence_location_assertion_count, 0) AS ?Ppse_place_spatiotemporal_existence_location_assertion)
+ 
+-  }
+   OPTIONAL { SELECT (COUNT(?Pwa_place_succeeded_by_assertion) AS ?Pwa_place_succeeded_by_assertion_count) ?Places_with_assertions WHERE {  
+       ?Places_with_assertions ^crm:P140_assigned_attribute_to ?Pwa_place_succeeded_by_assertion .
+       ?Pwa_place_succeeded_by_assertion a star:E13_spec_L3 .
+@@ -103,5 +104,8 @@
+   } GROUP BY ?Places_with_assertions }
+   BIND (COALESCE(?Pwa_place_same_as_place_assertion_count, 0) AS ?Pwa_place_same_as_place_assertion)
+ 
++  BIND ( ?Pwa_place_corresponds_to_assertion + ?Pwa_place_name_of_place_assertion + ?Pwa_place_part_of_place_assertion + ?Pwa_place_type_of_place_assertion + ?Ppse_place_spatiotemporal_existence_time_frame_assertion + ?Ppse_place_spatiotemporal_existence_location_assertion + ?Pwa_place_succeeded_by_assertion + ?Pwa_place_had_population_assertion + ?Pwa_place_same_as_place_assertion AS ?n_assertions)
++
++  FILTER (?n_assertions > 0)
+ 
+-}
+\ No newline at end of file
++}

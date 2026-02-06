@@ -22,6 +22,6 @@ RUN groupadd --gid $USER_GID $USERNAME \
 USER app
 
 # call uvicorn to be able to use ASGICacheMiddleware
-CMD ["uv", "run", "uvicorn", "run", "releven:app", "--port", "5000", "--proxy-headers"]
+CMD ["uv", "run", "uvicorn", "releven:app", "--port", "5000", "--proxy-headers"]
 
 EXPOSE 5000

@@ -1,0 +1,19 @@
+--- releven_people_assertions.rq	2026-02-06 12:02:14.451489092 +0100
++++ releven_people_assertions.rq.changed	2026-02-06 12:02:26.977054276 +0100
+@@ -23,6 +23,7 @@
+     ?Pa_person_religious_affiliation
+     ?Pa_person_possession_assertion
+     ?Pa_person_same_as_person_assertion
++    ?n_assertions
+ 
+ WHERE {
+ 
+@@ -122,5 +123,6 @@
+   } GROUP BY ?People_assertions }
+   BIND (COALESCE(?Pa_person_same_as_person_assertion_count, 0) AS ?Pa_person_same_as_person_assertion)
+ 
++  BIND (?Pa_person_name_of_person_assertion + ?Pa_person_gender_assignment + ?Pa_person_ethnic_group_membership_assertion + ?Pa_person_population_membership_assertion + ?Pa_person_social_relationship + ?Pa_person_language_skill + ?Pa_person_social_role + ?Pa_person_legal_role + ?Pa_person_religious_affiliation + ?Pa_person_possession_assertion + ?Pa_person_same_as_person_assertion AS ?n_assertions)
+ 
+-}
+\ No newline at end of file
++}

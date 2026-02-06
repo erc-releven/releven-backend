@@ -53,7 +53,8 @@ uv run wisskas tmp.xml endpoints --git \
   -li work '%%' \
   \
   \
-   -li person/people\|person_display_name 'person_display_name' 'person_id_assignment.*' 'person_id_assignment.person_id_assignment_identifier.*' 'person_id_assignment.person_id_assignment_by.external_authority_display_name' 'person_name_of_person_assertion.person_name_of_person_is' 'person_gender_assignment#' 'person_ethnic_group_membership_assertion#' 'person_population_membership_assertion#' 'part_of_manifest_group_assertion#' 'person_social_relationship#' 'person_language_skill#' 'person_social_role#' 'person_legal_role#' 'person_religious_affiliation#' 'person_possession_assertion#' 'person_same_as_person_assertion#' \
+  -li person/people\|person_display_name 'person_display_name' 'person_id_assignment.*' \
+  -li person/people_assertions\|person_display_name 'person_display_name' 'person_name_of_person_assertion#' 'person_gender_assignment#' 'person_ethnic_group_membership_assertion#' 'person_population_membership_assertion#' 'part_of_manifest_group_assertion#' 'person_social_relationship#' 'person_language_skill#' 'person_social_role#' 'person_legal_role#' 'person_religious_affiliation#' 'person_possession_assertion#' 'person_same_as_person_assertion#' \
   -ii person/people/detail id 'person_display_name' 'person_id_assignment.*.*' \
   -ii person/people/identity id 'person_name_of_person_assertion.*.*' 'person_ethnic_group_membership_assertion.*.*' 'person_population_membership_assertion.*.*' 'person_part_of_manifest_group_assertion.*.*' 'person_possession_assertion.*.*' \
   -ii person/people/life_events id 'person_gender_assignment.*.*.*' 'person_birth_of_person.*.*' 'person_death_of_person.*.*' 'person_language_skill.*.*' 'person_religious_affiliation.*.*' \

@@ -20,6 +20,7 @@ uv run wisskas tmp.xml endpoints --git \
   -c -0 \
   -t 60 \
   --cache 86400 \
+  --named-graphs \
   -r 10 \
   -ll \
   -li author_group '%%' \

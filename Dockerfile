@@ -17,11 +17,12 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && uv sync && ./generate-endpoints.sh \
     && uv run pytest test.py \
     && git config --system --add safe.directory /app \
-    && cd /app && git reset --hard
+    && cd /app && git reset --hard \
+    && chown -R $USERNAME:$USERNAME .cache
 
 USER app
 
 # call uvicorn to be able to use ASGICacheMiddleware
-CMD ["uv", "run", "uvicorn", "releven:app", "--port", "5000", "--proxy-headers"]
+CMD ["uv", "run", "uvicorn", "releven:app", "--host", "0.0.0.0", "--port", "5000", "--proxy-headers"]
 
 EXPOSE 5000

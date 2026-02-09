@@ -880,7 +880,7 @@ wheels = [
 [[package]]
 name = "wisskas"
 version = "0.1.0"
-source = { git = "https://github.com/acdh-oeaw/wisskas?branch=dev#522e354414f4630dfa7477efdf701fc8327f1a9a" }
+source = { git = "https://github.com/acdh-oeaw/wisskas?branch=dev#51d2424028967d67ff42911902627cad02dfee91" }
 dependencies = [
     { name = "hishel", extra = ["async"] },
     { name = "jinja2" },

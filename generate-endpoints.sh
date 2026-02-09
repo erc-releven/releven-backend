@@ -47,14 +47,17 @@ uv run wisskas tmp.xml endpoints --git \
   -li publication '%%' \
   -li object_type '%%' \
   -li religious_affiliation '%%' \
-  -li social_relationship '%%' \
-  -li social_relation_category '%%' \
+  -li social_relationship/social_relationship_types_with_instance_counts 'social_relationship_display_name' 'social_relationship_categorisation_assertion#' \
+  -li social_relationship/social_relationship_types_with_instances '%%' \
+  -ii social_relationship/social_relationship_types_with_instances_by_relationship_type_name social_relationship_display_name '%%' \
+  -ii social_relationship/social_relationship_types_with_instances_by_relationship_type_id id '%%' \
   -li social_quality '%%' \
   -li work '%%' \
   \
   \
   -li person/people\|person_display_name 'person_display_name' 'person_id_assignment.*' \
   -li person/people_with_assertions\|person_display_name 'person_display_name' 'person_name_of_person_assertion#' 'person_gender_assignment#' 'person_ethnic_group_membership_assertion#' 'person_population_membership_assertion#' 'part_of_manifest_group_assertion#' 'person_social_relationship#' 'person_language_skill#' 'person_social_role#' 'person_legal_role#' 'person_religious_affiliation#' 'person_possession_assertion#' 'person_same_as_person_assertion#' \
+  -li person/people_with_social_relationship_assertions 'person_display_name' 'person_social_relationship.%' 'person_social_relationship.person_social_relationship_relation_type_assertion.person_social_relationship_relation_type_is.social_relationship_display_name' 'person_social_relationship.person_social_relationship_related_person_assertion.person_social_relationship_related_person_is.person_display_name' \
   -ii person/people/detail id 'person_display_name' 'person_id_assignment.*.*' \
   -ii person/people/identity id 'person_name_of_person_assertion.*.*' 'person_ethnic_group_membership_assertion.*.*' 'person_population_membership_assertion.*.*' 'person_part_of_manifest_group_assertion.*.*' 'person_possession_assertion.*.*' \
   -ii person/people/life_events id 'person_gender_assignment.*.*.*' 'person_birth_of_person.*.*' 'person_death_of_person.*.*' 'person_language_skill.*.*' 'person_religious_affiliation.*.*' \
@@ -75,6 +78,9 @@ uv run wisskas tmp.xml endpoints --git \
   -li written_text/texts_with_assertions\|written_text_display_name 'written_text_display_name' 'written_text_title_assertion#' 'written_text_creation.written_text_creation_time_frame_assertion#' 'written_text_creation.written_text_creation_author_assertion#' 'written_text_creation.written_text_creation_place_assertion#' 'written_text_creation.written_text_creation_copied_from_assertion#' 'written_text_creation.written_text_creation_translated_from_assertion#' 'written_text_published_as_assertion#' 'written_text_written_in_assertion#' 'written_text_version_of_assertion#' 'written_text_used_as_source_assertion#' 'written_text_same_as_text_assertion#' \
   -ii written_text/texts/detail id '*' 'written_text_creation.*' 'written_text_creation.written_text_creation_author_assertion.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_is.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_by.*' 'written_text_creation.written_text_creation_author_assertion.written_text_creation_author_src.*' \
   -o releven || exit 1
+
+# meta-vocabulary, only has one category ('kinship')
+  # -li social_relation_category '%%' \
 
 for PATCHFILE in `ls *.patch`; do
   patch -p0 < "$PATCHFILE"

@@ -1,9 +1,14 @@
+FROM node:20-bookworm-slim AS node_runtime
+
 FROM python:3.12-slim
 ARG USERNAME=app
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 WORKDIR /app/
+ENV CI=true
+
+COPY --from=node_runtime /usr/local/ /usr/local/
 
 COPY . /app
 
@@ -13,13 +18,18 @@ COPY . /app
 # the image will report as dirty if build on windows due to the line endings.
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
-    && apt update && apt -y full-upgrade && apt install -y git && pip3 install poetry && apt clean \
-    && poetry config virtualenvs.create false && poetry install --no-dev && poetry cache clear --all . \
+    && apt update && apt -y full-upgrade && apt install -y git && pip3 install uv && apt clean \
+    && npm install -g pnpm \
+    && pnpm install --ignore-scripts --config.confirmModulesPurge=false \
+    && pnpm --dir ./node_modules/model-explorer install --ignore-scripts --config.confirmModulesPurge=false \
+    && pnpm run generate \
+    && uv sync \
     && git config --system --add safe.directory /app \
-    && cd /app && git reset --hard
+    && cd /app && git reset --hard \
+    && chown -R $USERNAME:$USERNAME /app
 
 USER app
 
-CMD ["fastapi", "run", "releven.py", "--port", "5000", "--proxy-headers"]
+CMD ["uv", "run", "uvicorn", "entrypoint:app", "--port", "5000", "--proxy-headers"]
 
 EXPOSE 5000

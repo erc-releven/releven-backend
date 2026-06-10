@@ -1,0 +1,90 @@
+{
+  "nodes": [
+    {
+      "id": [
+        "g_person"
+      ],
+      "selected": "value"
+    },
+    {
+      "id": [
+        "g_person",
+        ">",
+        "p_person_display_name"
+      ],
+      "selected": "value"
+    },
+    {
+      "id": [
+        "g_person",
+        ">",
+        "g_person_social_relationship"
+      ]
+    },
+    {
+      "id": [
+        "g_person",
+        ">",
+        "g_person_social_relationship",
+        ">",
+        "g_person_social_relationship_related_person_assertion"
+      ]
+    },
+    {
+      "id": [
+        "g_person",
+        ">",
+        "g_person_social_relationship",
+        ">",
+        "g_person_social_relationship_relation_type_assertion"
+      ],
+      "selected": "value"
+    },
+    {
+      "id": [
+        "g_person",
+        ">",
+        "g_person_social_relationship",
+        ">",
+        "g_person_social_relationship_related_person_assertion",
+        ">",
+        "p_person_social_relationship_related_person_is"
+      ]
+    },
+    {
+      "id": [
+        "g_person",
+        ">",
+        "g_person_social_relationship",
+        ">",
+        "g_person_social_relationship_related_person_assertion",
+        ">",
+        "p_person_social_relationship_related_person_is",
+        ">",
+        "p_person_display_name"
+      ],
+      "selected": "value"
+    },
+    {
+      "id": [
+        "g_person",
+        ">",
+        "g_person_social_relationship",
+        ">",
+        "g_person_social_relationship_relation_type_assertion",
+        ">",
+        "p_person_social_relationship_relation_type_is"
+      ]
+    }
+  ],
+  "sparql": {
+    "countDistinct": false,
+    "disregardTypesOfNonRootNodes": false,
+    "includeZeroCountResults": true,
+    "makeAllFieldsOptional": false,
+    "makeEntityReferencesOptional": false,
+    "namedGraph": "",
+    "omitPathPrefixesUnlessExplicitlySelected": true
+  },
+  "xmlSource": "releven_inferred_20260219.xml"
+}

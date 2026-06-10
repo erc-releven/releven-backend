@@ -1,0 +1,14 @@
+{
+  "name": "endpoint_definitions",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "generate": "pnpm --dir ./node_modules/model-explorer install --ignore-scripts --config.confirmModulesPurge=false && node --import tsx ./node_modules/model-explorer/src/cli.ts --xml releven_inferred_20260506.xml --timeout 240 --cache 600 --root-stubs --root-types --scenario endpoint_definitions/*.json --output files --output-dir releven/ --entrypoint"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0"
+  },
+  "dependencies": {
+    "model-explorer": "github:erc-releven/model-explorer#main"
+  }
+}

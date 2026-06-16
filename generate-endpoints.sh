@@ -7,7 +7,7 @@ sed -e 's/id>[gp]_/id>/g' "pathbuilder_expanded_20251216.xml" > tmp.xml
 
 uv run wisskas tmp.xml endpoints --git \
   -f \
-  -a "https://releven-graphdb.acdh-dev.oeaw.ac.at/repositories/owl-max" \
+  -a "https://graphdb.r11.eu/repositories/releven2026" \
   -p aaao "https://ontology.swissartresearch.net/aaao/" \
   -p crm "http://www.cidoc-crm.org/cidoc-crm/" \
   -p lrmoo "http://iflastandards.info/ns/lrm/lrmoo/" \
